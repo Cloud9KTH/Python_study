@@ -674,7 +674,7 @@ for 조건문을 활용한 카운트 다운 코드
 ```python
 a = int(input('카운트 다운하고 싶은 초기 숫자 입력 -->'))
 for b in range(a, 0, -1) :
-  print(b)
+    print(b)
 print('발사')
 ```
 
@@ -685,9 +685,9 @@ for 조건문을 활용한 곱셈표 생성기. (2~9단 까지만...)
 ```python
 print('곱셈 표 생성')
 for a in range(2, 10) :
-  print (a, '단')
-  for b in range(1, 10):
-    print(a, 'X', b, '=', a*b)
+    print (a, '단')
+    for b in range(1, 10):
+        print(a, 'X', b, '=', a*b)
 ```
 
 
@@ -712,9 +712,9 @@ d = (95, 90, 88, 83)
 #f= (63, 30, 50, 30)
 
 for i in range(len(a)) :
-  for j in range(len(c)):
-    for k in range(len(d)):
-      print(a[j],'의', c,) ###'평가 결과는', d[k])
+    for j in range(len(c)):
+        for k in range(len(d)):
+            print(a[j],'의', c,) ###'평가 결과는', d[k])
 ##print (a[i] '의' c[i] '평가 결과는', d[i])
 ```
 
@@ -727,8 +727,8 @@ n = ('다니엘', '제임스','피터', '칼')
 item = ('업무태도', '성과', '친화력', '고객응대')
 s = (95, 90, 88, 83)
 for k in range (len(n)):
-  for j in range(len(item)) :
-    print(n[k],'의', item[j],'점수는', s[j])
+    for j in range(len(item)) :
+        print(n[k],'의', item[j],'점수는', s[j])
 ```
 
 
@@ -740,11 +740,11 @@ while 구문을 활용한 카운트 다운 코드.
 ```python
 a = int(input('카운트 다운 숫자 써봐'))
 while True :
-  a = a-1
-  print (a)
+    a = a-1
+    print (a)
 
-  if a == 0 :
-    break
+    if a == 0 :
+        break
 ```
 
 
