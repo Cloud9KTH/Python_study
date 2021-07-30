@@ -796,11 +796,59 @@ print(x)
 
 `Out`: 10
 
+```python
+name = "James"
+ID_num = 789
+print("Name:", name + ",", "ID Number:", ID_num)
+```
 
+`Out`: Name: James, ID Number: 789
+
+
+
+```python
+print("James is my friend.\nHe is Korean.")
+```
+
+`Out`: James is my friend. 
+
+​		  He is Korean.
+
+※ 개행문자: `\n` 를 추가하면 문자열에서 **줄 바꿈 수행.** 만약에 `\n` 를 두개 입력하면 줄 바꿈 두번 수행됨.
+
+
+
+```python
+print("Welcome to")
+print("python!!")
+```
+
+`Out`: Welcome to 
+
+​		  python!!
+
+```python
+print("Welcome to ", end = "")
+print("python!!")
+```
+
+`Out`: Welcome to python!!
+
+※ `end = ""` 입력하면 줄 바꿈 없이 연결되어 출력 수행.
 
 
 
 *** 형식 지정 출력**
+
+**나머지 연산자(%)를 이용한 형식 및 위치 지정**
+
+나머지 연산자는 print() 함수에서 데이터의 출력 형식과 위치를 지정할 때도 사용.
+
+```python
+print("%type" % data)
+```
+
+
 
 
 
@@ -818,6 +866,14 @@ print("animal: {0},{3}".format(ani_0,ani_1,ani_2, ani_3))
 ```
 
 
+
+
+
+
+
+
+
+#### 02 키보드 입력
 
 
 
@@ -1746,6 +1802,8 @@ print('총점:{0}, 평균: {1}'.format(score_sum, average))
 
 `Out`: 총점: 350, 평균: 87.5
 
+
+
 내장함수 `sum()`과 `len()`을 사용하여 총점과 평균값 구하기
 
 ```python
@@ -1764,4 +1822,233 @@ print('최하점수:{0}, 최고점수: {1}'.format(min(scores), max(scores)))
 
 
 ## 08 객체와 클래스
+
+
+
+
+
+
+
+## 09 문자열과 텍스트 파일 데이터 다루기
+
+> 데이터가 포함된 텍스트 파일에서 문자 열을 읽어올 수 있어야 함. 사용목적에 맞게 문자열을 처리할 수 있어야 함. 파이썬에서는 문자열 처리를 위한 다양한 내장 문자열 메서드가 제공 되므로 문자열을 처리하기 쉬움. 
+
+#### 01 문자열 다루기
+
+파이썬에서는 큰따옴표(")나 작은따옴표(') 안에 들어 있는 문자의 집합을 문자열 이라고 함. 한 텍스트 파일의 내용을 읽어 오면 그것도 문자열임. 텍스트 파일을 읽어서 가져온 문자열은 대부분 문자열 처리를 통해 원하는 형태의 데이터로 변환해서 이용. 문자열을 처리하기 위해서 는 문자열 분리, 불필요한 문자열 제거,  문자열 연결 등을 할 수 있어야 함.
+
+*** 문자열 분리하기**
+
+문자열을 부분 문자열로 나누고 싶을 때는 split() 메서드를 이용.
+
+```python
+str.split([sep])
+```
+
+split() 메서드는 문자열(str)에서 구분자(separator)인 sep을 기준으로 문자 열을 분리해 리스트로 반환. 소괄호 안의 대괄호([ ]) 부분은 생략할 수 있음. 구분자(sep)를 입력하지 않고 str.split()을 수행하면 문자열 사이의 모든 공 백과 개행문자(\n)를 없애고 분리된 문자열을 항목으로 담은 리스트를 반환.
+
+콤마(,)로 구분된 단어가 여러 개 적힌 문자열이 있을 때 구분자를 콤마(,) 로 입력해 split() 메서드를 적용하면 콤마를 기준으로 단어를 분리.
+
+```python
+coffee_menu_str = "에스프레소, 아메리카노, 카페라테, 카푸치노"
+coffee_menu_str.split(',')
+```
+
+`Out`: ['에스프레소', ' 아메리카노', ' 카페라테', ' 카푸치노']
+
+
+
+문자열에 직접 split() 메서드 사용 가능.
+
+```python
+"에스프레소, 아메리카노, 카페라테, 카푸치노".split(',')
+```
+
+`Out`: ['에스프레소', ' 아메리카노', ' 카페라테', ' 카푸치노']
+
+
+
+공백으로 구분된 문자열에 인자 없이 split() 메서드 사용 가능.
+
+```python
+"에스프레소 아메리카노 카페라테 카푸치노".split()
+```
+
+`Out`: ['에스프레소', ' 아메리카노', ' 카페라테', ' 카푸치노']
+
+
+
+문자열에 인자 없이 split()를 사용하면 문자열 사이의 모든 공백과 개행 문자(\n)를 없애고 분리된 문자열을 반환. 단어 사이에 공백과 개행문자가 아무리 많더라도 split() 이용하면 공백과 개행문자를 모두 없애고 문자열을 분리.
+
+```python
+"  에스프레소  \n\n  아메리카노  \n  카페라테     카푸치노 \n".split()
+```
+
+`Out`: ['에스프레소', ' 아메리카노', ' 카페라테', ' 카푸치노']
+
+
+
+문자열을 분리할 때 인자 maxsplit을 추가하면 앞에서부터 원하는 횟수 만큼만 문자열을 분리 할 수 있음.
+
+```python
+str.split([sep ,] maxsplit = 숫자)
+```
+
+문자열(str)을 구분자 sep(생략 가능)을 기준으로 maxsplit만큼 분리해 리스트로 반환.
+
+```python
+"에스프레소 아메리카노 카페라테 카푸치노".split(maxsplit = 2)
+```
+
+`Out`: ['에스프레소', '아메리카노', '카페라테 카푸치노']
+
+인자로 지정한 maxSplit=2로 인해 앞에서부터 2개의 공백(sep)까지만 문자열을 나눠 결과적으로 3개의 항목이 담긴 리스트를 반환.
+
+
+
+```python
+phone_number = "+82-01-2345-6789"            # 국가 번호가 포함된 전화번호
+split_num = phone_number.split("-", 1)       # 국가 번호와 나머지 번호 분리
+
+print(split_num)
+print("국내전화번호: {0}".format(split_num[1]))
+```
+
+`Out`: ['+82', '01-2345-6789']
+
+​		  국내전화번호: 01-2345-6789
+
+
+
+*** 필요없는 문자열 삭제하기**
+
+문자열에서는 앞뒤 공백 혹은 개행문자와 같이 불필요한 부분을 지워야 할 때 사용할 수 있는 것이 strip() 메서드.
+
+```python
+str.strip([chars])
+```
+
+strip()메서드는 문자열(str)의 앞과 뒤에서 시작해서 지정한 문자(chars)  외의 다른 문자를 만날 때까지 지정한 문자(chars)를 모두 삭제한 문자 열을 반환. 지정한 문자(chars)와 일치하는 것이 없으면 문자열(str)을 그대로 반환. 지정한 문자(chars)가 여러 개일 경우 순서는 상관이 없음. 지정한 문자(chars) 없이 str.strip()를 수행하면 문자열 앞과 뒤의 모든 공백과 개행문자(\n)를 삭제한 후에 문자열을 반환.
+
+```python
+str = "    Python    "
+str.strip()                     # 공백과 줄 바꿈 제거
+```
+
+`Out`: Python
+
+```python
+"aaaaaaaaPythonaaaaa".strip('a')
+```
+
+`Out`: Python
+
+```python
+test_str = "aaaabbPythonbbbaaaaa"
+temp1 = test_str.strip('a')        # 문자열 앞뒤의 'a' 제거
+temp1
+temp1.strip('b')
+```
+
+`Out`: bbPythonbbb
+
+```python
+test_str = "aaaabbPythonbbbaaaaa"
+temp1 = test_str.strip('a')        # 문자열 앞뒤의 'a' 제거
+temp1.strip('b')                   # 문자열 앞뒤위 'b' 제거
+```
+
+`Out`: Python
+
+
+
+strip()메서드의 경우에는 제거하고자 하는 문자를 하나만 지정해서 여러 번 수행 할 수도 있지만 지우고자 하는 문자를 모두 지정해서 한 번에 제거할 수도 있음. 지우고자 하는 문자를 여러 개 지정할 때 순서는 상관이 없음. 지우고자 하는 문자의 순서를 바꿔서 지정해도 됨.
+
+```python
+test_str = "aaaabbPythonbbbaaaaa"
+test_str.strip('ab')
+```
+
+`Out`: Python
+
+```python
+test_str = "aaaabbPythonbbbaaaaa"
+test_str.strip('ba')
+```
+
+`Out`: Python
+
+```python
+test_str_multi = "##***!!## ... Python is powerful..!!.!..!! %**##..%%  "
+test_str_multi.strip('! # % * .')           # 순서 변경해도 동일한 결과 나옮.
+```
+
+`Out`: Python is powerful
+
+```python
+"    Python    ".strip(' ')              # 공백 제거
+```
+
+`Out`: Python
+
+```python
+" \n   Python \n  \n \n".strip(' \n')     # 공백과 줄 바꿈 같이 제거
+```
+
+`Out`: Python
+
+
+
+strip()메서드는 문자열(str)의 앞과 뒤에서 시작해서 지정한 문자(chars)  외의 다른 문자를 만날 때까지만 지정한 문자(chars)를 삭제. 따라서 `'aaaaballaaaa'` 같은 문자열에 `.strip('a')`를 수행하면 'ball'의 'a'는 지워지지 않음.
+
+```python
+"aaaaaaaBallaaaaaa".strip('a')
+```
+
+`Out`: Ball
+
+
+
+문자열의 앞뒤 공백과 개행문자는 모두 삭제되지만 문자열 사이에 있는 공백과 개행문자는 삭제되지 않음.
+
+```python
+"\n This is very \n fast \n\n".strip()
+```
+
+`Out`: This is very \n fast
+
+
+
+앞이나 뒤 중에서 한쪽만 삭제하고 싶으면 lstrip()나 rstrip() 메서드를 사용. 문자열 왼쪽 (즉,앞쪽) 부분만 삭제하려면 Istrip()메서드. 문자열 오른쪽 (즉,뒤쪽) 부분만 삭제하려면 rstrip()메서드를 이용.
+
+```python
+str_lr = "000Python is easy to learn.000"
+print(str_lr.strip('0'))
+print(str_lr.lstrip('0'))
+print(str_lr.rstrip('0'))
+```
+
+`Out`: Python is easy to learn. 
+
+​		  Python is easy to learn.000 
+
+​		  000Python is easy to learn.
+
+
+
+콤마와 공백을 포함한 문자열에서 콤마를 기준으로 문자열을 분리하고 공백을 모두 제거. coffee_menu 변수에는 콤마와 공백을 포함한 여러 커피 종류가 있음. split(',')을 이용해 콤마를 구분자로 삼아 문자열을 리스트로 분리.
+
+```python
+coffee_menu = "  에스프레소, 아메리카노,    카페라테    , 카푸치노 "
+coffee_menu_list = coffee_menu.split(',')
+coffee_menu_list
+```
+
+`Out`: ['  에스프레소', ' 아메리카노', '    카페라테    ', ' 카푸치노 ']
+
+
+
+
+
+
 
