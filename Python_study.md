@@ -2046,9 +2046,378 @@ coffee_menu_list
 
 `Out`: ['  에스프레소', ' 아메리카노', '    카페라테    ', ' 카푸치노 ']
 
+ coffee_menu_list에는 공백을 포함한 문자열을 항목으로 갖는 리스트 가 반환. 리스트 변수 coffee_menu_list의 모든 항목에 공백을 제거하기 위해 항목마다 strip() 메서드를 적용. 공백이 제거된 문자열은 append()를 이용해 리스트 변수 coffee_list에 하나씩 추가하면 최종적으로 원하는 결과를 얻을 수 있음.
+
+```python
+coffee_list = []                            # 빈 리스트 생성
+for coffee in coffee_menu_list:
+    temp = coffee.strip()                   # 문자열의 공백 제거
+    coffee_list.append(temp)                # 리스트 변수에 공백이 제거된 문자열 추가
+
+print(coffee_list)                          # 최종 문자열 리스트 출력
+```
+
+`Out`: ['에스프레소', '아메리카노', '카페라테', '카푸치노']
 
 
 
+*** 문자열 연결하기**
+
+```python
+name1 = '철수'
+name2 = '영희'
+hello = '님, 주소와 전화 번호를 입력해 주세요.'
+
+print(name1 + hello)
+print(name2 + hello)
+```
+
+`Out`: 철수님, 주소와 전화 번호를 입력해 주세요. 
+
+​		  영희님, 주소와 전화 번호를 입력해 주세요.
 
 
 
+문자열이 아니라 리스트의 모든 항목을 하나의 문자열로 만들려면? 리스트의 모든 항목을 하나의 문자열 join() 메서드를 사용.
+
+```python
+str.join(seq)
+```
+
+join() 메서드는 문자열을 항목으로 갖는 시퀀스(seq)의 항목 사이에 구분자 문자열(str)을 모두 넣은 후에 문자열로 반환. 시퀀스는 리스트나 튜플과 같이 여러 데이터를 순서대로 담고 있는 나 열형 데이터.  문자열을 항목으로 갖는 문자열 리스트를 join() 메서드를 이용해 문자 열로 변환하는 과정. 문자열 리스트의 항목 사이에는 구분자 문자열(한 칸 공백)이 들어감
+
+```python
+address_list = ['서울시', '서초구', '반포대로', '201(반포동)']
+address_list
+```
+
+`Out`: ['서울시', '서초구', '반포대로', '201(반포동)']
+
+```python
+a = ' '
+a.join(address_list)
+```
+
+`Out`: 서울시 서초구 반포대로 201(반포동)
+
+```python
+" ".join(address_list)
+```
+
+`Out`: 서울시 서초구 반포대로 201(반포동)
+
+```python
+"*^^*".join(address_list)
+```
+
+`Out`: <img src="C:\myPyCode\Png file\09-01-01.png" style="zoom:33%;" />
+
+
+
+*** 문자열 찾기**
+
+```python
+str.find(search_str)
+```
+
+find() 메서드는 문자열(str)에서 찾으려는 검색 문자열(search_str)과 첫번째로 일치하는 문자열(str)의 위치를 반환. **문자열의 위치는 0부터 시작**. 문자열에서 검색 문자열을 찾을 수 없으면 -1을 반환.
+
+```python
+str_f = "Python code."
+
+print('찾는 문자열의 위치:', str_f.find("Python"))
+print('찾는 문자열의 위치:', str_f.find("code"))
+print('찾는 문자열의 위치:', str_f.find("n"))
+print('찾는 문자열의 위치:', str_f.find("easy"))
+```
+
+`Out`: 찾는 문자열의 위치: 0 
+
+​		  찾는 문자열의 위치: 7 
+
+​		  찾는 문자열의 위치: 5 
+
+​		  찾는 문자열의 위치: -1
+
+
+
+str.find(search_str)에 시작 위치(start)와 끝 위치(end)를 추가로 지정 해서 검색 범위를 설정할 수도 있음.
+
+```python
+ str.find(search_str, start, end)
+```
+
+start ~ end-1 범위에서 검색 문자열(search_str)을 검색해 일치하는 문자열(str)의 위치를 반환. 지정된 범위에서 찾지 못하면 -1 을 반환.
+
+
+
+시작 위치만 지정해서 검색 범위를 설정할 수도 있음. 
+
+```python
+str.find(search_str, start)
+```
+
+검색 범위는 start부터 문자열(str)의 끝이 됨.
+
+
+
+```python
+str_f_se = 'Python is powerful. Pyton is easy to learn.'
+
+print(str_f_se.find("Python", 10, 30))     # 시작 위치(start)와 끝 위치(end) 지정
+print(str_f_se.find("Python", 35))         # 찾기 위한 시작 위치(start) 지정
+```
+
+`Out`: 20
+
+​		  -1
+
+
+
+해당 문자열이 몇 번 나오는지 알고 싶다면 **count() 메서드를 이용.**
+
+```python
+str.count(search_str)
+str.count(search_str, start)
+str.count(search_str, start, end)
+```
+
+count()메서드는 문자열(str) 에서 찾고자 하는 문자열(search_str)과 일치하는 횟수를 반환하고, 없으면 0을 반환. find()와 마찬가지로 start와 end로 검색 범위를 지정할 수도 있음.
+
+```python
+str_c = "Python is powerful. Python is easy to learn. Python is open"
+
+print('Python의 개수는?:', str_c.count('Python'))
+print('powerful의 개수는?:', str_c.count('powerful'))
+print('IPython의 개수는?:', str_c.count('IPython'))
+```
+
+`Out`: Python의 개수는?: 3 
+
+​		  powerful의 개수는?: 1 
+
+​		  IPython의 개수는?: 0
+
+
+
+다른 찾기 메서드로 **startwith() 메서드**와 **entwith() 메서드**가 있음. 각각 문자열이 지정된 문자 열로 시작하는지 끝나는지를 검사할 때 사용.
+
+```python
+str.startswith(prefix)
+str.startswith(prefix, start)
+str.startswith(prefix, start, end)
+```
+
+ startswith() 메서드는 문자열(str)이 지정된 문자열(prefix)로 시작되면 True, 그렇지 않으면 False를 반환. find()와 마찬가지로 start와 end로 범위를 지정할 수도 있음.
+
+
+
+```python
+str.endswith(suffix)
+str.endswith(suffix, start)
+str.endswith(suffix, start, end)
+```
+
+endswith()메서드는 문자열(str)이 지정된 문자열(suffix)로 끝나면 True, 그렇지 않으면 False를 반환. start와 end로 범위를 지정할 수도 있음.
+
+
+
+```python
+str_se = "Python is powerful. Python is easy to learn."
+
+print("Python으로 시작?:", str_se.startswith("Python") )
+print("is로 시작?:", str_se.startswith("is") )
+print(".로 끝?:", str_se.endswith(".") )
+print("learn으로 시작?:", str_se.endswith("learn") )
+```
+
+`Out`: Python으로 시작?: True 
+
+​		  is로 시작?: False 
+
+​		  .로 끝?: True 
+
+​		  learn으로 시작?: False
+
+
+
+*** 문자열 바꾸기**
+
+```python
+str.replace(old, new[, count])
+```
+
+replace() 메서드는 문자열(str)에서 지정한 문자열(old)을 찾아서 새로 운 문자열(new)로 바꿈. count는 문자열(str)에서 지정된 문자열을 찾아서 바꾸는 횟수. 횟수를 지정하지 않으면 문자열 전체에서 찾아서 바꿈.
+
+```python
+str_a = 'Python is fast. Python is friendly. Python is open.'
+print(str_a.replace('Python','IPython'))
+print(str_a.replace('Python','IPython', 2))
+```
+
+`Out`: IPython is fast. IPython is friendly. IPython is open. 
+
+​		  IPython is fast. IPython is friendly. Python is open.
+
+
+
+특정 문자열을 삭제할 때도 replace() 메서드를 이용할 수 있음. 문자열에서 ‘['와 ']’를 제거. **replace() 메서드에는 문자열을 하나씩만 지정할 수 있으므로** ‘[’와 ’]’를 모두 제거하려면 replace() 메서드를 두 번 사용.
+
+```python
+str_b = '[Python] [is] [fast]'
+str_b1 = str_b.replace('[', '')     # 문자열에서 '['를 제거
+str_b2 = str_b1.replace(']', '')    # 결과 문자열에서 다시 ']'를 제거
+
+print(str_b)
+print(str_b1)
+print(str_b2)
+```
+
+`Out`: [Python] [is] [fast] 
+
+​		  Python] is] fast] 
+
+​		  Python is fast
+
+
+
+*** 문자열의 구성 확인하기**
+
+※ 문자열의 구성을 확인하기 위한 메서드
+
+| 메서드    | 설명                                                         | 사용 예       |
+| --------- | ------------------------------------------------------------ | ------------- |
+| isalpha() | 문자열이 숫자, 특수 문자, 공백이 아닌 문자로 구성돼 있을 때만 True, 그 밖에는 False 반환 | str.isalpha() |
+| isdigit() | 문자열이 모두 숫자로 구성돼 있을 때만 True, 그 밖에는 False 반환 | str.isdigit() |
+| isalnum() | 문자열리 특수 문자나 공백이 아닌 문자와 숫자로 구성돼 있을 때만 True, 그 밖에는 False 반환 | str.isalnum() |
+| isspace() | 문자열이 모두 공백 문자로 구성돼 있을 때만 True, 그 밖에는 False 반환 | str.isspace() |
+| isupper() | 문자열이 모두 로마자 대문자로 구성돼 있을 때만 True, 그 밖에는 False 반환 | str.isupper() |
+| islower() | 문자열이 모두 로마자 소무낮로 구성돼 있을 때만 True, 그 밖에는 False 반환 | str.islower() |
+
+
+
+```python
+print('Python' .isalpha())       # 문자열에 공백, 특수 문자, 숫자가 없음
+print('Ver. 3.x' .isalpha())     # 공백, 특수 문자, 숫자 중 하나가 있음
+```
+
+`Out`: True
+
+​		  False
+
+
+
+```python
+print('12345' .isdigit())       # 문자열이 모두 숫자로 구성됨
+print('12345abc' .isdigit())    # 문자열이 숫자로만 구성되지 않음
+```
+
+`Out`: True
+
+​		  False
+
+
+
+```python
+print('abc1234' .isalnum())     # 특수 문자나 공백이 아닌 무낮와 숫자로 구성됨
+print('   abc1234' .isalnum())  # 문자열에 공백이 있음
+```
+
+`Out`: True
+
+​		  False
+
+
+
+```python
+print('   ' .isspace())         # 문자열이 공백으로만 구성됨
+print(' 1 ' .isspace())         # 문자열에 공백 외에 다른 문자가 있음
+```
+
+`Out`: True
+
+​		  False
+
+
+
+```python
+print('PYTHON' .isupper())      # 문자열이 모두 대문자로 구성됨
+print('Python' .isupper())      # 문자열에 대문자와 소문자가 있음
+print('python' .islower())      # 문자열이 모두 소문자로 구성됨
+print('Python' .islower())      # 문자열에 대문자와 소문자가 있음
+```
+
+`Out`: True
+
+​		  False
+
+​          True
+
+​		  False
+
+
+
+*** 대소문자로 변경하기**
+
+lower() 메서드는 문자열(str)에서 로마자 알파벳의 모든 문자를 소문자 로 바꾸고 upper() 메서드는 대문자로 바꿈.
+
+```python
+str.lower()
+str.upper()
+```
+
+
+
+```python
+string1 = 'Python is powerful. PYTON IS EASY TO LEARN.'
+print(string1.lower())
+print(string1.upper())
+```
+
+`Out`: python is powerful. pyton is easy to learn. 
+
+​		  PYTHON IS POWERFUL. PYTON IS EASY TO LEARN.
+
+```python
+'Python' == 'python'
+```
+
+`Out`: False
+
+```python
+print('Python' .lower() == 'python' .lower())
+print('Python' .upper() == 'python' .upper())
+```
+
+`Out`: True
+
+​		  True
+
+
+
+#### 02 텍스트 파일의 데이터를 읽고 처리하기
+
+**데이터 파일 준비 및 읽기**
+
+* 데이터: 어느 커피 전문점에서 나흘 동안 기록한 메뉴별 커피 판매량 
+
+* 원하는 직업: 4일 동안 메뉴당 전체 판매량과 하루 평균 판매량 구하기
+
+`coffeShopSales.txt` 라는 파일이 있다고 가정. 윈도우 에서는 `type` 명령어 사용하고 IPython 아니 주피터 노트북에서는 `! 명령어`로 실행. `type` 명령어 쓰면 파일의 내용 출력.
+
+```python
+!type coffeeShopSales.txt
+```
+
+`Out`: <img src="C:\myPyCode\Png file\09-02-01.png" style="zoom:33%;" />
+
+```python
+file_name = 'c:/myPyCode/coffeeShopSales2.txt'
+
+f = open(file_name)           # 파일 열기
+for line in f:                # 한 줄씩 읽기
+    print(line, end='')       # 한 줄씩 출력
+f.close()                     # 파일 닫기
+```
+
+`Out`: <img src="C:\myPyCode\Png file\09-02-02.png" style="zoom:33%;" />
