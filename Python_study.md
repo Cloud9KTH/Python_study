@@ -848,11 +848,42 @@ print("python!!")
 print("%type" % data)
 ```
 
+print() 함수의 인자에는 두 개의 %가 있음. 첫 번째는 따옴표로 둘러싼 문자열 '%type’에서 사용했고 두 번째는 **'% data'**에서 사용. 따옴표와 **'% data' 사이에 콤마가 없고 공백이 있다는 점에 유의**. '%type'은 data 형식에 따라 다른 값을 지정.  data가 문자열이면 %s를, 정수이면 %d(혹은 %i)룰, 실수이면 %f(혹은 %F)룰 지정.  실수의 경우 %f로 표시 하면 기본적으로 소수점 6자리까지 출력.
+
+ data가 두 개 이상이면 따옴표로 둘러싼 문자열 안에 data의 개수에 맞게 '%type'를 순서대로 입 력하고 튜플 형식으로 data를 묶어서 이용. print() 함수에서 data가 두 개일 때 나머지 연산자를 이용해 data를 출력 하는 형식과 위치를 지정하는 구조.
+
+```python
+ print("%type %type" % (datal, data2))
+```
 
 
 
+```python
+name = "광재"
+print("%s는 나의 친구 입니다." % name)
+```
+
+`Out`: 광재는 나의 친구 입니다.
 
 
+
+```python
+r = 3                                      # 변수 r에 정수 데이터 할당
+PI = 3.1415926535879                       # 변수 PI에 실수 데이터 할당
+print('반지름: %d, 원주율: %f' %(r, PI))   # 지정된 위치에 데이터 출력
+```
+
+`Out`: 반지름: 3, 원주율: 3.141593
+
+
+
+**형식 지정 문자열에서 출력 위치 지정**
+
+```python
+print("{0} {1} {2} ... {n}".format(data_0, data_1, data_2, ... , data_n))
+```
+
+{N}의 N은 0부터 시작하는 숫자로 format()에서 데이터의 위치(0부터 시작)를 의미. {N}에는 format()에서 N에 해당하는 위치의 데이터가 들어가서 출력. {0}에는 data_0가 출력되고 {1}에는 data_1이 출력하고 {n}에는 data_n이 출력.
 
 
 
@@ -864,6 +895,12 @@ ani_3 = 'cow'
 
 print("animal: {0},{3}".format(ani_0,ani_1,ani_2, ani_3))
 ```
+
+
+
+
+
+
 
 
 
@@ -2036,7 +2073,7 @@ print(str_lr.rstrip('0'))
 
 
 
-콤마와 공백을 포함한 문자열에서 콤마를 기준으로 문자열을 분리하고 공백을 모두 제거. coffee_menu 변수에는 콤마와 공백을 포함한 여러 커피 종류가 있음. split(',')을 이용해 콤마를 구분자로 삼아 문자열을 리스트로 분리.
+콤마와 공백을 포함한 문자열에서 콤마를 기준으로 문자열을 분리하고 공백을 모두 제거. coffee_menu 변수에는 콤마와 공백을 포함한 여러 커피 종류가 있음. **split(',')을 이용해 콤마를 구분자로 삼아 문자열을 리스트로 분리.**
 
 ```python
 coffee_menu = "  에스프레소, 아메리카노,    카페라테    , 카푸치노 "
@@ -2421,3 +2458,528 @@ f.close()                     # 파일 닫기
 ```
 
 `Out`: <img src="C:\myPyCode\Png file\09-02-02.png" style="zoom:33%;" />
+
+파일명을 경로와 함께 지정해 file_name 변수에 할당한 후 파일 열기로 해당 파일을 열고 한 줄씩 읽어서 line 변수에 할당하고 출력. line 변수에는 문자열 한 줄 전체가 들어가 있음.
+
+
+
+**파일에서 읽은 문자열 데이터 처리**
+
+첫 번째 줄에 있는 항목 이름을 가져와 빈칸을 기준으로 나누고 두 번째 줄 이후의 항목 값을 처리.  첫 번째 줄의 항목 이름을 가져오는 코드.
+
+```python
+f = open(file_name)     # 파일 열기
+header = f.readline()   # 데이터의 첫 번째 줄을 읽음
+f.close()               # 닫기
+
+header
+```
+
+`Out`: 날짜    에스프레소  아메리카노  카페라테  카푸치노\n
+
+
+
+줄의 문자열을 분리해 리스트로 변환하려고 하는데 단어 사이에 공백 과 개행문자가 있음. 인자 없이 split() 메서드를 호출해 첫 줄의 문자열 에서 항목 이름을 분리해 리스트로 만듬.
+
+```python
+header_list = header.split()   # 첫 줄의 문자열을 분리후 리스트로 변환
+header_list
+```
+
+`Out`: ['날짜', '에스프레소', '아메리카노', '카페라테', '카푸치노']
+
+ 첫번째 줄에 있는 항목 이름을 리스트 변수인 header_list에 할당.
+
+
+
+for문을 이용해 두 번째 줄부터 끝줄까지의 데이터를 문자열에서 공백 과 개행문자를 제거하고 각 항목을 data_list에 넣는 코드를 추가.
+
+```python
+f = open(file_name)               # 파일 열기
+header = f.readline()             # 데이터의 첫 번째 줄을 읽음
+header_list = header.split()      # 첫 줄의 문자열을 분리한 후 리스트로 변환
+
+for line in f:                    # 두번째 줄부터 데이터를 읽어서 반복적으로 처리
+    data_list = line.split()      # 문자열을 분리해서 리스트로 변환
+    print(data_list)              # 결과 확인을 위해 리스트 출력
+    
+f.close()                         # 파일 닫기
+```
+
+`Out`: ['10.15', '10', '50', '45', '20'] 
+
+​		  ['10.16', '12', '45', '41', '18'] 
+
+​		  ['10.17', '11', '53', '32', '25'] 
+
+​		  ['10.18', '15', '49', '38', '22']
+
+출력 결과를 보면 리스트 변수 data_list의 각 항목이 문자열로 되어 있음. 전체 판매량과 평균 을 계산하려면 일일 판매량 데이터 문자열은 숫자 로 바꿔야 함. int()나 float()을 이용하면 문자열 타입의 데이터를 정수나 실수 타입 으로 변환. 정수인 것을 int()를 이용해 판매량 데이터를 숫자로 변환.
+
+
+
+커피 종류별로 생성한 빈 리스트에 항목을 추가하는 append()를 이용해 커피 종류별로 판매량 데이터를 분류.
+
+```python
+f = open(file_name)               # 파일 열기
+header = f.readline()             # 데이터의 첫 번째 줄을 읽음
+headerList = header.split()       # 첫 줄의 문자열을 분리한 후 리스트로 변환
+
+espreso = []                      # 커피 종류별로 빈 리스트 생성
+americano = []
+cafelatte = []
+cappucino = []
+
+for line in f:                    # 두번째 줄부터 데이터를 읽어서 반복적으로 처리
+    dataList = line.split()       # 문자열에서 공백을 제거해서 문자열 리스트로 변환
+    
+    # 커피 종류별 판매량을 정수로 변환한 후, 리스트의 항목으로 추가
+    espreso.append(int(dataList[1]))
+    americano.append(int(dataList[2]))
+    cafelatte.append(int(dataList[3]))
+    cappucino.append(int(dataList[4]))
+    
+f.close()                            # 파일 닫기
+
+print('{0}: {1}'.format(headerList[1], espreso))  # 변수에 할당된 값을 출력
+print('{0}: {1}'.format(headerList[2], americano))
+print('{0}: {1}'.format(headerList[3], cafelatte))
+print('{0}: {1}'.format(headerList[4], cappucino))
+```
+
+`Out`: 에스프레소: [10, 12, 11, 15] 
+
+​		  아메리카노: [50, 45, 53, 49] 
+
+​		  카페라테: [45, 41, 32, 38] 
+
+​		  카푸치노: [20, 18, 25, 22]
+
+
+
+리스트를 이용해 4일 메뉴별 전체 판매량과 하루 평균 판매량을 구함. 리스트, 튜플, 세트 데이터에서 항목의 합을 구하는 내장 함수 sum()과 항목의 개수(길이)를 구하는 내장 함수 len()을 이용.
+
+```python
+total_sum = [sum(espresso), sum(americano), sum(cafelatte), sum(cappucino)]
+total_mean = [sum(espresso)/len(espresso), sum(americano)/len(americano), sum(cafelatte)/len(cafelatte), sum(cappucino)/len(cappucino)]
+
+for k in range(len(total_sum)):
+    print('[{0}] 판매량'.format(headList[k+1]))
+    print('- 나흘 전체: {0}, 하루 평균: {1}'.format(total_sum[k], total_mean[k]))
+    
+**수정 필요**
+```
+
+
+
+
+
+## 10 모듈
+
+> 파이썬 코드를 작성한 후 파일로 저장하면 다른 코드에서도 이 파일의 변수, 함수, 클래스를 불러와 이용할 수가 있음. 파이썬에서는 코드가 저장된 파일을 모듈(Module)이라 함. 코드를 작성할 때 이미 만들어진 모듈을 활용하면 코드를 효과적으로 작성할 수 있음.
+
+#### 01 모듈을 사용하는 이유 
+
+파이썬에서 모듈은 상수, 변수, 함수, 클래스를 포함하는 코드가 저장 된 파일. 모듈은 다른 모듈에서도 불러서 실행할 수도 있고 파이썬(혹은 IPython) 콘솔이나 주피터 노트북에서 불러서 실행할 수 있음.
+
+모듈로 나누면 코드 작성과 관리가 쉬워 짐. 
+
+• 어느 정도 규모가 큰 프로그램을 작성할 경우 파일 하나에 전체 코드를 구현하지 않고 가능별로 나눈 후에 여러 파일에서 해당 가능의 코드를 구현 
+
+• 하나의 코드 파일에서는 해당 가능의 구현에만 신경 쓰면 되므로 코드 작성과 관리가 편해짐 
+
+이미 작성된 코드를 재사용할 수 있음
+
+• 특정 프로그램을 만들기 위해 작성한 모듈은 다른 코드들 만들 때도 활용할 수 있음
+
+• 특정 가능을 구현한 모듈은 다른 프로그램을 작성할 때 재사용할 수 있음 
+
+• 코드를 다시 만들지 않아도 되니 코드를 빨리 작성할 수 있음 
+
+• 자신이 만든 모듈뿐 아니라 다른 사람이 만든 모듈도 사용할 수 있음
+
+공동작업이 편리해 짐 
+
+• 규모가 큰 프로그램을 만들 때는 일반적으로 여러 사람이 같이 작업을 진행 
+
+• 공동으로 프로그램을 만들 때는 전체 프로그램을 모듈별로 설계하고 개인별로 나누어 코딩한 후 전체 모듈을 통합 
+
+• 모듈별로 구분해 코드를 작성 하면 자신이 맡은 모듈만 신경 쓰면 되므로 공동 작업으 로 인한 복잡성이 줄고 효율은 높아짐
+
+
+
+#### 02 모듈 생성 및 호출
+
+> 모듈은 파이썬 코드가 저장된 파일. 모듈 이름은 확장자(.py)를 제외한 파일 이름. 파일로 저장된 모듈을 활용하려면 모듈이 저장된 위치(경로)에서 파이썬 (혹은 IPython) 콘솔 혹은 주피터 노트북을 실행해서 코드를 작성하거나 파이썬 코드 파일을 실행하면 됨. 모듈이 저장된 위치(경로)를 지정하는 것(모듈과 같은 위치(경로)에 있지 않더라도 모듈을 수행)
+
+*** 모듈 만들기**
+
+코드를 ‘모듈이름.py'로 저장. 내장 마술 명령어(magic command)인 ’%%writefile'을 이용해 코드를 파일로 저장.
+
+ • 코드 셀의 코드를 파이썬 코드 파일로 저장하기 
+
+```python
+%%writefile [-a] file.py
+<코드 블록>
+```
+
+• 저장된 파이썬 코드 파일을 불러오기 
+
+```python
+%%load file.py
+```
+
+• 파이썬 코드 파일 실행하기
+
+```python
+%%run file.py
+```
+
+
+
+```python
+%%writefile C:\myPyCode\my_first_module.py
+# File name: my_first_module.py
+
+def my_function():
+    print('This is my first module')
+```
+
+`Out`: Writing C:\myPyCode\my_first_module.py
+
+
+
+```
+!type C:\myPyCode\my_first_module.py
+```
+
+`Out`: # File name: my_first_module.py
+
+​		  def my_function():
+​		      print('This is my first module')
+
+
+
+*** 모듈 불러오기**
+
+```
+import 모듈명
+```
+
+모듈을 임포트한 후에는 `모듈명.변수`, `모듈명.함수()`, `모듈명.클래스()` 와 같은 형식으로 모듈에서 정의한 내용을 사용.
+
+```python
+import my_first_module
+
+my_first_module.my_function()
+```
+
+`Out`: This is my first module
+
+
+
+```python
+%%writefile C:\myPyCode\modules\my_area.py   # 파일명: my_area.py
+
+PI = 3.14
+def square_area(a):                           # 정사각형의 넓이 반환
+    return a ** 2
+
+def circle_area(r):                           # 원의 넓이 반환
+    return PI * r ** 2
+```
+
+`Out`: Writing my_area.py
+
+```python
+import my_area                                    # 모듈 불러오기
+
+print('pi =', my_area.PI)                         # 모듈 변수 이용
+print('square_area =', my_area.square_area(5))    # 모듈 함수 이용
+print('circle_area =', my_area.circle_area(2))
+```
+
+`Out`: pi = 3.14 
+
+​		  square_area = 25 
+
+​		  circle_area = 12.56
+
+ 불러온 모듈에서 사용할 수 있는 변수, 함수, 클래스를 알고 싶다면 `dir(모듈명)`을 이용. 
+
+```python
+dir(my_area)
+```
+
+`Out`: ['PI', 
+
+​		  '__builtins__',       # '_'가 두개씩('__') 문자 앞뒤로 붙어 문자가 볼드체 처리됨. 
+
+​		  '__cached__', 
+
+​		  '__doc__', 
+
+​		  '__file__', 
+
+​		  '__loader__', 
+
+​		  '__name__', 
+
+​		  '__package__', 
+
+​		  '__spec__', 
+
+​		  'circle_area', 
+
+​		  'square_area']
+
+my_area 모듈에서 정의한 변수 PI와 함수 circle_area()와 square_area() 가 있음.
+
+
+
+*** 모듈을 불러오는 다른 형식**
+
+**모듈의 내용 바로 선언**
+
+모듈 내의 변수와 함수를 호출하기 위해 `import 모듈명`으로 모듈을 불러와 `모듈명.변수`, `모듈명.함수()`와 같은 형식을 이용하였음. 이 경우 모듈 내에서 정의한 내용을 호출하기 위해 계속해서 모듈명을 써 야 하므로 코드를 작성할 때 불편함. 모듈 내에 있는 변수와 함수, 그리고 클래스를 ’모듈명.' 없이 ’변수’, '함수()', '클래스()'처럼 직접 호출해서 이용할 수 있음.
+
+```python
+from 모듈명 import 변수명
+from 모듈명 import 함수명
+from 모듈명 import 클래스명
+```
+
+ from 모듈명 import 변수명'형식으로 모듈에서 변수를 바로 불러와서 사용.
+
+```python
+from my_area import PI          # 모듈의 변수 바로 불러오기
+print('pi =', PI)               # 모듈의 변수 이용
+```
+
+`Out`: pi = 3,14
+
+
+
+모듈 함수를 'from 모듈명 import 함수명' 형식으로 바로 불러서 사용.
+
+```python
+from my_area import square_area          # 모듈의 변수 바로 불러오기
+from my_area import circle_area
+
+print('square_area =', my_area.square_area(5))    # 모듈 함수 이용
+print('circle_area =', my_area.circle_area(2))
+```
+
+`Out`: square_area = 25 
+
+​		  circle_area = 12.56
+
+
+
+모듈의 변수와 함수를 이용하기 위해 `from 모듈명 import 변수명`과 `from 모듈명 import 함수명` 으로 필요한 변수와 함수 개수만큼 각각 선언해서 이용. from 모들명 import 변수명/함수명/클래스명'은 하나만 선언할 수 있 는 것이 아니라 콤마(,)로 구분해서 여러 개를 선언할 수 있음.
+
+```python
+from my_area import PI, square_area, circle_area
+
+print('pi =', PI)  
+print('square_area =', my_area.square_area(5))    # 모듈 함수 이용
+print('circle_area =', my_area.circle_area(2))
+```
+
+`Out`: pi = 3.14 
+
+​		  square_area = 25 
+
+​		  circle_area = 12.56
+
+
+
+모듈의 모든 변수, 함수, 클래스를 바로 모듈명 없이 바로 이용.
+
+```python
+from 모듈명 import *
+```
+
+```python
+from my_area import *
+
+print('pi =', PI)  
+print('square_area =', my_area.square_area(5))    # 모듈 함수 이용
+print('circle_area =', my_area.circle_area(2))
+```
+
+`Out`: pi = 3.14 
+
+​		  square_area = 25 
+
+​		  circle_area = 12.56
+
+
+
+※ from 모듈명 import *' 형식으로 선언하는 방법은 '모듈명.'을 쓰지 않고 모듈 내의 변수, 함수, 클래스를 사용할 수 있어서 편리하기는 하 지만 **모듈을 두 개 이상 이용할 때는 주의가 필요.**
+
+```python
+%%writefile C:\myPyCode\modules\my_module1.py 
+# File name: my_module1.py 
+
+def func1():
+    print('func1 in my_module1 ')
+    
+def func2():
+    print('func2 in my_module1 ')
+```
+
+`Out`: Writing C:\myPyCode\modules\my_module1.py 
+
+```python
+%%writefile C:\myPyCode\modules\my_module2.py 
+# File name: my_module2.py 
+
+def func2():
+    print('func2 in my_module2 ')
+    
+def func3():
+    print('func3 in my_module2 ')
+```
+
+`Out`: Writing C:\myPyCode\modules\my_module2.py 
+
+
+
+```python
+from my_module1 import*
+from my_module2 import*
+
+func1()
+func2()
+func3()
+```
+
+`Out`: func1 in mu_module1  
+
+​		  func2 in mu_module2  
+
+​		  func3 in mu_module2 
+
+코드는 오류 없이 잘 수행. 모듈 my_module1과 모듈 my_module2에만 각각 존재하는 func1과 func3은 불러오는데 문제가 없음. **모듈 my_module1 과 모듈 my_module2에 모두 있는 func2 함수를 호출하면 나중에 선언해서 불러온 모듈의 함수가 호출됨.**
+
+
+
+```python
+from my_module2 import*
+from my_module1 import*
+
+func1()
+func2()
+func3()
+```
+
+`Out`: func1 in mu_module1  
+
+​		  func2 in mu_module1  
+
+​		  func3 in mu_module2 
+
+ func2()를 호출했을 때 이번에는 my_module1 모듈에서 함수를 불러 온 것을 알 수 있음.
+
+
+
+*** 모듈 명을 별명으로 선언**
+
+`import 모듈명` 형식으로 모듈을 선언해서 이용할 경우 '모듈명.변수', '모듈명.함수()'，'모듈명.클래스()'와 같은 형식으로 모 듈에서 정의한 내용을 불러오는데 코드에서 매번 모듈명을 입력하기 가 번거로움. 특히 모듈명이 길다면 입력이 더욱 번거로울 것. `from 모듈명 import *` 방법으로 선언해서 `모듈명.`을 생략할 수도 있지만 여러 모듈을 임포트할 경우에는 주의가 필요.
+
+ 모듈명에 새로운 이름{별명)을 붙이면 해결 
+
+```python
+import 모듈명 as 별명
+```
+
+코드를 작성할 때 `모듈명.변수`, `모듈명.함수()`, `모듈명.클래스()`  대신 `별명.변수`,`별명.함수()`, `별명.클래스()`처럼 지정 할 수 있음.
+
+ 모듈뿐 아니라 변수명, 함수명, 클래스명도 별명을 붙일 수 있음.
+
+```python
+from 모듈명 import 변수명 as 별명 
+from 모듈명 import 함수명 as 별명 
+from 모듈명 import 클래스명 as 별명
+```
+
+ 변수명, 함수명, 클래스명 대신 별명으로 이용할 수 있음.
+
+```python
+import my_area as area             # 모듈명(my_area)에 별명(area)을 붙임.
+
+print('pi =', PI)                  # 모듈명 대신 별명 이용
+print('square_area =', area.square_area(5))   
+print('circle_area =', area.circle_area(2))
+```
+
+`Out`: pi = 3.14 
+
+​		  square_area = 25 
+
+​		  circle_area = 12.56
+
+```python
+from my_area import PI as pi
+from my_area import square_area as square
+from my_area import circle_area as circle
+
+print('pi =', PI)                  # 모듈 변수의 별명 이용
+print('square_area =', square(5))  # 모듈 함수의 별명 이용 
+print('circle_area =', circle(2))
+```
+
+`Out`: pi = 3.14 
+
+​		  square_area = 25 
+
+​		  circle_area = 12.56
+
+
+
+#### 03 모듈을 직접 실행하는 경우와 임포트한 후 실행하는 경우 구분하기
+
+`import 모듈명`로 불러온 후에 모듈과 관련된 코드를 실행해야 결과를 확인할수 있었음. 모듈을 만들 때는 함수나 클래스가 잘 작성됐는지 확인하기 위해 모듈 내에서 함수나 클래스를 직접 호출.
+
+```python
+%%writefile C:\myPyCode\modules\my_module_test1.py 
+# File name: my_module_test1.py
+
+def func(a):
+    print("입력숫자: ", a)
+    
+func(3)
+```
+
+`Out`: Writing c:\myPyCode\modules\my_module_test1.py
+
+```python
+%run C:\myPyCode\modules\my_module_test1.py
+```
+
+`Out`: 입력숫자: 3
+
+```python
+import my_module_test1
+```
+
+`Out`: 입력숫자: 3
+
+`import 모듈명`을 통해 모듈을 불러오면 모듈 내의 코드를 실행됨. `import my_module_test1`를 수행하면 my_module_test1 모듈의 코 드가 수행. my_module_test1 모듈 내 코드에서 func(3)는 작성한 함수가 잘 실행되는지를 확인하기 위해 작성해 놓은 것이지 모듈을 임포트할 때 실 행하기 위해 작성한 코드가 아님.  모듈을 마지막으로 저장 할 때는 테스트를 위해 작성한 코드는 삭제. 테스트를 위해 작성한 코드를 일일이 삭제하는 것은 번거로움. 모듈을 테스트하기 위해 직접 수행하는 경우와 임포트해서 사용하는 경우를 구분.
+
+
+
+ 모듈을 마지막으로 저장 할 때는 테스트를 위해 작성한 코드는 삭제. 테스트를 위해 작성한 코드를 일일이 삭제하는 것은 번거로움. 모듈을 테스트하기 위해 직접 수행하는 경우와 임포트해서 사용하는 경우를 구분 모듈을 마지막으로 저장 할 때는 테스트를 위해 작성한 코드는 삭제. 테스트를 위해 작성한 코드를 일일이 삭제하는 것은 번거로움. 모듈을 테스트하기 위해 직접 수행하는 경우와 임포트해서 사용하는 경우를 구분.
+
+
+
+ 모듈을 직접 수행하는 경우와 임포트해서 이용하는 경우를 구분해 사용.
+
+```python
+if __name__ == "__main__": 
+    〈직접 수행할 때만 실행되는 코드〉
+```
+
+코드를 모듈 파일에서 직접 수행하느냐 아니면 임포트해서 사용하느냐 에 따라 코드를 다르게 수행. 같은 모듈에서 코드를 직접 수행할 때만 `if __name__ == "__main__"： ` 안의 코드가 실행되고 임포트해서 사용하면 수행되지 않음.
+
