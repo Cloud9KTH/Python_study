@@ -1860,6 +1860,113 @@ print('최하점수:{0}, 최고점수: {1}'.format(min(scores), max(scores)))
 
 ## 08 객체와 클래스
 
+#### 01 클래스 선언과 객체 생성
+
+*** 객체란?**
+
+객체는 속성(상태, 특징)과 행위(행동, 동작, 기능)로 구성된 대상을 의미. 객체는 자동차나 로봇 같은 사물일 수도 있고 사람이나 동물일 수 있으 며 어떤 개념일 수도 있음. 프로그래밍 언어에서 객체를 만들 때는 주로 현실 세계를 반영. 객체의 특징인 속성은 변수로, 객체가 할 수 있는 일인 행동은 함수로 구현. **객체는 변수와 함수의 묶음.**
+
+사람이라면 이름, 키, 몸무게 같은 속성은 변수로 구현하고 걷거나 뛰거 나 앉는 행동은 함수로 구현. 객체가 자전거라면 바퀴의 크기, 색깔 같은 속성은 변수로 구현하고 전진, 방향 전환, 정지 같은 동작은 함수로 구현. 객체를 만들고 이용할 수 있는 기능을 제공하는 프로그래밍 언어를 객 체지향 프로그래밍(Object- Oriented Programming, OOP) 언어 혹은 객체지향 언어라고 함.
+
+*** 클래스 선언**
+
+객체를 만들려면 먼저 클래스를 선언해야 함. **클래스는 객체의 공통된 속성과 행위를 변수와 함수로 정의한 것**. **클래스는 객체를 만들기 위한 기본 틀**이고 **객체는 기본 틀을 바탕으로 만들어진 결과**. 객체는 클래스에서 생성하므로 객체를 클래스의 인스턴스(Instance)라 고 함.
+
+클래스 선언을 위한 기본 구조.
+
+```python
+class 클래스명():
+    [변수1] #클래스변수 
+    [변수2]
+    
+    def 함수1(self[, 인자1, 인자2, • • , 인자n]): # 클래스 함수 
+        〈코드 블록〉
+        
+    def 함수2(self[, 인자1, 인자2, • • , 인자n]):
+        〈코드 블록〉
+
+```
+
+클래스를 선언할 때 class 키워드 다음에 클래스명, 소괄호，콜론(:)을 순서대로 입력. **클래스명 (클래스 이름)은 보통 로마자 알파벳 대문자로 시작하며** 여러 단어가 연결 된 클래스 이름은 가독성을 위해 대문자로 시작하는 단어를 연결해 클래스 이름을 만듦. 클래스 내에서 변수를 선언하고 `def 함수():` 형태로 함수를 작성. 클래스명 다음 줄에 오는 모든 코드는 들여쓰기 해야 함. **클래스에서 정의한 함수의 첫 번째 인자는 self**. **self는 객체 생성 후에 자신을 참조하는데 이용**. 대괄호([ ]) 안에 있는 인자는 필요한 만큼 사용할 수 있으며, 필요 없으면 생략할 수 있음.
+
+
+
+*** 객체 생성 및 활용**
+
+예제로 사용할 클래스는 자전거 클래스. 자전거 클래스를 만들기 전에 우선 자전거가 갖는 속성과 동작을 정의. 
+
+자전거의 속성: 바퀴 크기(wheel_size), 색상(color)
+
+자전거의 동작 지정된 속도로 이동(move), 좌/우회전(turn), 정지(stop)
+
+자전거의 속성과 동작을 바탕으로 자전거 클래스를 만듬. 자전거 클래스를 선언하고 객 체를 생성한 후 클래스에 변수와 함수를 추가해서 클래스를 완성.
+
+자전거 클래스를 선언. 클래스를 단순화하기 위해 클래스명이 Bicycle인 자전거 클래스의 원형 만 선언. 클래스에는 클래스명(Bicycle)만 있고, 코드 부분에는 Pass만 있어서 실제로는 아무 일도 일어나지 않음. Bicycle 클래스에는 변수도 함수도 없지만 이것도 엄연한 클래스.
+
+```python
+class Bicycle():   # 클래스 선언
+	pass
+```
+
+선언된 클래스로부터 클래스의 인스턴스인 객체를 생성하는 방법.
+
+```python
+객체명 = 클래스명()
+```
+
+클래스명()의 클래스는 앞에서 미리 선언돼 있어야 함. 객체명은 변수명을 만들 때와 같은 규칙을 적용해서 만듬.
+
+정의한 Bicycle 클래스의 객체는 아래와 같이 생성할 수 있음.
+
+```python
+my_bicycle = Bicycle()
+```
+
+선언한 Bicycle 클래스에는 변수도 없고 함수도 없으므로 아직은 어떤 작업도 수행할 수 없지만 my_bicyde 객체는 Bicycle 클래스의 인스턴스임. 객체를 실행하면 객체의 클래스와 객체를 생성할 때 할당받은 메모리의 주소값을 출력함.
+
+```python
+my_bicycle
+```
+
+```
+Out:
+<__main__.Bicycle at 0x7fd881bcbad0>
+```
+
+
+
+ 객체에 속성을 설정하려면 '객체명.변수명'에 '속성값’을 할당.
+
+```
+객체명.변수명 = 속성값
+```
+
+```python
+my_bicycle.wheel_size = 26
+my_bicycle.color = 'black'
+```
+
+객체의 변수에 접근해서 객체의 속성을 가져오는 방법.
+
+```
+객체명.변수명
+```
+
+객체의 속성값을 가져와서 출력.
+
+```python
+print('바퀴 크기:', my_bicycle.wheel_size)
+print('색상:', my_bicycle.color)
+```
+
+```
+Out:
+바퀴 크기: 26
+색상: black
+```
+
+
+
 
 
 
@@ -2982,4 +3089,592 @@ if __name__ == "__main__":
 ```
 
 코드를 모듈 파일에서 직접 수행하느냐 아니면 임포트해서 사용하느냐 에 따라 코드를 다르게 수행. 같은 모듈에서 코드를 직접 수행할 때만 `if __name__ == "__main__"： ` 안의 코드가 실행되고 임포트해서 사용하면 수행되지 않음.
+
+```python
+%%writefile C:\myPyCode\modules\my_module_test2.py
+# File name: my_module_test2.py
+
+def func(a):
+    print('입력 숫자:', a)
+    
+if __name__=="__main__":
+    print('모듈을 직접 실행')
+    func(3)
+    func(4)
+```
+
+`Out`: Writing c:\myPyCode\modules\my_module_test2.py
+
+```python
+%run c:\myPyCode\modules\my_module_test2.py
+```
+
+`Out`: 모듈을 직접 실행
+
+​		  입력 숫자: 3
+
+​		  입력 숫자: 4
+
+
+
+```python
+import my_module_test2
+```
+
+실행 결과를 보면 아무것도 출력되지 않음. `if __name__ == "__main__"：` 내에 작성한 코드는 임포트한 경우에는 실행되지 않기 때문.
+
+모듈에서 코드를 직접 수행하는 경우와 임포트해서 사용하는 경우를 구분해서 코드를 실행하기 위한 구조.
+
+```python
+if __name__ == "__main__"：
+	< 직접 수행할 때만 실행되는 코드> 
+else: 
+    < 임포트됐을 때만 실행되는 코드>
+```
+
+
+
+```python
+%%writefile C:\myPyCode\modules\my_module_test3.py
+# File name: my_module_test3.py
+
+def func(a):
+    print('입력 숫자:', a)
+    
+if __name__=="__main__":
+    print('모듈을 직접 실행')
+    func(3)
+    func(4)
+else:
+    print('모듈을 임포트해서 실행')
+```
+
+`Out`: Writing c:\myPyCode\modules\my_module_test3.py
+
+```python
+%run c:\myPyCode\modules\my_module_test3.py
+```
+
+`Out`: 모듈을 직접 실행
+
+​		  입력 숫자: 3
+
+​		  입력 숫자: 4
+
+```python
+import my_module_test3
+```
+
+`Out`: 모듈을 임포트해서 실행
+
+
+
+#### 04 내장 모듈
+
+> 임의로 숫자(난수)를 발생시키는 random 모듈, 날짜 및 시간 관련 처리할 수 있는 datetime 모듈，연도/월/주 등 달력과 관련된 처리를 할 수 있는 calendar 모듈을 이 용하는 방법. 파이썬 표준 라이브러리에 관해 설명 한 사이트 https://docs.python.org/3.9/library
+
+***난수 발생 모듈**
+
+코드에서는 정해진 숫자가 아닌 실행할 때마다 임의의 숫자를 사용해 야 할 때가 있음. 임의의 숫자를 난수(random number) 라고함. 파이썬에서는 random 모듈을 이용해 난수를 만들 수 있음. random 모듈을 이용하려면 `import random`으로 random 모듈을 먼저 불러온 후에 random 모듈의 함수를 이용.
+
+```python
+import random 
+random.random모듈함수()
+```
+
+
+
+```python
+import random 
+
+random.random()
+```
+
+`import random`으로 random 모듈을 불러왔고 `random.random()`으로 0~1 사이의 실수중에서 임의의 숫자를 생성. random은 모듈명이고 random()은 random 모듈의 함수. random.random()를 실행할 때마다 다른 값이 출력. random.random() 코드를 실행하면 결과가 다를 것(난수를 발생시키 는 함수의 특징).
+
+randon 모듈의 함수와 사용 예
+
+| random 모듈의 함수          | 설명                                                         | 사용 예                           |
+| --------------------------- | ------------------------------------------------------------ | --------------------------------- |
+| random()                    | 0.0 <= 실수 < 1.0 범위의 임의의 실수를 반환                  | random.random()                   |
+| randint(a, b)               | a <= 정수 <= b의 범위의 임의의 정수 반환                     | random.randint(1, 6)              |
+| radrange(start, stop, step) | range(start, stop, step)에서 임의의 정수를 반환              | random.radrange(0, 10, 2)         |
+| choice(seq)                 | 공백이 아닌 시퀸스(seq)에서 임의의 항목을 반환               | random.choice([1, 2, 3])          |
+| sample(population, k)       | 시퀸스로 이뤄진 모집단(population)에서 중복되지 않는 k개의 인자를 반환 | random.sample([1, 2, 3, 4, 5], 2) |
+
+특정 범위의 정수 안에서 임의의 정수를 발생시키려면 randint() 함수를 이용. 
+
+숫자가 1에서 6까지 있는 주사위 두 개를 던져서 두 개의 숫자가 임의로 나오게 하는 코드.
+
+```python
+import random
+
+dice1 = random.randint(1, 6)   # 임의의 정수가 생성됨.
+dice2 = random.randint(1, 6)   # 임의의 정수가 생성됨.
+print('주사위 두개의 숫자: {0}, {1}'.format(dice1, dice2))
+```
+
+`Out`: 주사위 두개의 숫자: 4, 2
+
+```python
+import random
+
+random.randrange(0, 11, 2)
+```
+
+`Out`: 6
+
+```python
+import random
+
+num1 = random.randrange(1, 10, 2)   # 1 ~ 9 중 임의의 홀수 선택
+num2 = random.randrange(1, 100, 10) # 1 ~ 99 중 임의의 10 단위 숫자 선택
+print('num1: {0}, num2: {1}'.format(num1, num2))
+```
+
+`Out`: num1: 3, num2: 61
+
+```python
+import random
+
+menu = ['비빔밥', '된장찌개', '볶음밥', '불고기', '스파게티', '피자', '탕수육']
+random.choice(menu)
+```
+
+`Out`: '불고기' 
+
+````python
+import random
+
+random.sample([1, 2, 3, 4, 5, 6], 2)  # 모집단에서 두개의 인자 선택
+````
+
+`Out`: 4, 6
+
+
+
+*** 날짜 및 시간 관련 처리 모듈**
+
+날짜와 시간을 다룰 수 있는 파이썬 내장 모듈인 datetime 모듈. datetime 모듈에는 날짜를 표현하는 date 클래스, 시간을 표현하는 time 클래스, 날짜와 시간을 표현하는 datetime 클래스 등이 있음. datetime 모듈을 이용하려면 먼저 `import datetime`으로 datetime  모둘을 불러와야 함. datetime 모듈을 불러온 후에는 클래스에서 객체를 생성해 이용하는 방법이 있고 각 클래스의 클래스 메서드를 이용하는 방법.
+
+datetime 모듈의 각 클래스에서 객체를 생성해 이용하는 방법 
+
+```python
+import datetime 
+
+date_obj = datetime.date(year, month, day) 
+time_obj = datetime.time(hour, minute, second) 
+datetime_obj = datetime.datetime(year, month, day, hour,  minute, second)
+```
+
+ 생성한 객체를 이용해 각 클래스의 속성을 이용. date 클래스에는 year, month, day의 속성이 있으며 time 클래스에 는 hour, minute, second의 속성이 있음. datetime 클래스는 date 클래스라 time 클래스의 모든 속성이 있음.
+
+내장 모듈 datetime을 이용하는 다른 방법은 객체를 생성하지 않고 각 클래스의 클래스 메서드를 이용 하는 것.
+
+```python
+import datetime 
+
+date_var = datetime.date.date_classmethod() 
+time_var = datetime.time.time.classmethod() 
+datetime_var = datetime .datetime .datetime_classmethod()
+```
+
+클래스 메서드를 이용하는 경우에도 각 클래스의 속성은 그대로 이용.
+
+날짜를 표현하는 date 클래스.
+
+```python
+import datetime
+
+set_day = datetime.date(2021, 8, 4)
+print(set_day)
+```
+
+`Out`: 2021-08-04
+
+ date 객체를 생성할 때 인자로 연도, 월, 일을 입력할 수 있음. 생성된 date 객체는 print()로 입력한 날짜를 출력. 연도, 월, 일을 각각 구하려면 date 클래스의 속성(year, month, day) 을 이용.
+
+```python
+print('{0}/{1}/{2}'.format(set_day.year, set_day.month, set_day.day))
+```
+
+`Out`: 2021/8/4
+
+datetime 모듈의 date 객체는 타입이 date로 그 객체끼리 빼기 연산 을 할 수 있음. 빼기 연산에서 앞의 객체의 날짜가 뒤의 객체의 날짜보다 더 나중이면 결과 날짜가 양수로 나오고 더 먼저이면 결과 날짜가 음수로 나옴. 빼기 연산을 수행한 후에 결과의 데이터 타입은 timedelta로 바뀜.
+
+```python
+import datetime
+
+day1 = datetime.date(2021, 4, 1)
+day2 = datetime.date(2021, 8, 4)
+diff_day = day2 - day1
+print(diff_day)
+```
+
+`Out`: 125 days, 0:00:00
+
+데이터 타입 확인
+
+```python
+type(day1)
+```
+
+`Out`: datetime.date
+
+```python
+type(diff_day)
+```
+
+`Out`: datetime.timedelta
+
+앞의 두 날짜차이 계산에서 날짜만 출력하려면 timedelta 클래스 속성 인 days를 이용.
+
+```python
+print('**지정된 두 날짜의 차이는 {}일 입니다 **'.format(diff_day.days))
+```
+
+`Out`: **지정된 두 날짜의 차이는 125일 입니다 **  # 마크다운 문법 때문에 강조로 보임.
+
+datetime 모듈의 date 클래스에는 오늘 날짜를 반환하는 클래스 메서 드인 today()를 제공. 오늘 날짜를 확인(클래스 메서드 today()는 인자 없이 호출).
+
+```python
+import datetime
+
+print(datetime.date.today())
+```
+
+`Out`: 2021-08-04
+
+오늘과 특정 날짜의 차이를 알려면 빼기 연산을 수행
+
+```python
+import datetime
+
+today = datetime.date.today()
+special_day = datetime.date(2018, 12, 31)
+print(special_day - today)
+```
+
+`Out`: -947 days, 0:00:00
+
+시간(시각)과 관련된 처리할 수 있는 time 클래스. tine 클래스에서 객체를 생성할 때 시, 분, 초를 인자로 입력.
+
+```python
+import datetime
+
+set_time = datetime.time(15, 30, 45)
+print(set_time)
+```
+
+`Out`: 15:30:45
+
+ time 클래스의 속성(hour, minute, second)을 이용해 시, 분, 초를 각 각 출력.
+
+```python
+print('{0}:{1}:{2}'.format(set_time.hour, set_time.minute, set_time.second))
+```
+
+`Out`: 15:30:45
+
+날짜와 시간을 모두 다룰 수 있는 datetime 클래스.
+
+```python
+import datetime
+
+set_dt = datetime.datetime(2018, 10, 9, 10, 20, 0)
+print(set_dt)
+```
+
+`Out`: 2018-10-09 10:20:00
+
+`import datetime`의 datetime은 모듈 이름이고 datetime()은 datetime 모듈 안에 있는 클래스 이름. **모듈 이름과 클래스 이름이 같아서 혼동될 수 있는데 다른 것이니 사용 할 때 주의.**
+
+ datetime 클래스의 경우에도 속성을 이용해 연, 월，일，시, 분, 초를 각각 수행.
+
+```python
+print('날짜 {0}/{1}/{2}'.format(set_dt.year, set_dt.month, set_dt.day))
+print('시각 {0}:{1}:{2}'.format(set_dt.hour, set_dt.minute, set_dt.second))
+```
+
+`Out`: 날짜 2018/10/9 
+
+​		  시각 10:20:0
+
+현재 시각을 구하려면 datetime 클래스의 클래스 메서드인 now()를 이용.
+
+```python
+import datetime
+
+now = datetime.datetime.now()
+print(now)
+```
+
+`Out`: 2021-08-04 02:47:12.205788
+
+now()로 얻은 결과는 오늘 날짜(연, 월, 일)와 현재 시각(시, 분, 초). 초는 소수점 이하의 초까지 반환.
+
+ 각 클래스의 속성을 이용해 날짜와 시간을 출력했지만 날짜 및 시간 출력 양식을 지정해 출력.
+
+```python
+print('Date & Time: {:%Y-%h-%d, %H:%M:%S}'.format(now))
+```
+
+`Out`: Date & Time: 2021-Aug-04, 02:47:12
+
+%Y, %m, %d는 각각 연도, 월, 일을 나타내고 %H, %M, %S는 각각 시, 분, 초를 나타냄. 이 값들은 `{: }` 안에 있어야 하며 일부만 사용할 수도 있음.
+
+날짜와 시각을 각각 출력.
+
+```python
+print('Date: {:%Y, %m, %d}'.format(now))
+print('Time: {:%H/%M/%S}'.format(now))
+```
+
+`Out`: Date: 2021, 08, 04 
+
+​		  Time: 02/47/12
+
+date 클래스의 객체와 마찬가지로 datetime 클래스의 객체도 빼기 연산을 할 수 있음.  현재 날짜 및 시각과 특정일의 날짜 및 시각의 차이를 구하기.
+
+```python
+now = datetime.datetime.now()
+set_dt = datetime.datetime(2017, 12, 1, 12, 30, 45)
+
+print('현재 날짜 및 시각: ', now)
+print('차이: ', set_dt - now)
+```
+
+`Out`:  현재 날짜 및 시각:  2021-08-04 04:43:45.691644 
+
+​		  차이:  -1342 days, 7:46:59.308356
+
+datetime 모듈의 객체를 `import 모듈명`을 수행한 후에 사용했지만 `from 모듈명 import 클래스명` 방법을 이용하면 모듈명 없이 바로 클래스 이름이나 클래스 메서드 이름으로 이용할 수 있음.
+
+```python
+from datetime import date, time, datetime
+
+print(date(2019, 7, 1))
+```
+
+`Out`: 2019-07-01
+
+```python
+print(date.today())
+```
+
+`Out`: 2021-08-04
+
+```python
+print(time(15, 30, 45))
+```
+
+`Out`: 15:30:45
+
+```python
+print(datetime(2020, 2, 14, 18, 10, 50))
+```
+
+`Out`: 2020-02-14 18:10:50
+
+```python
+print(datetime.now())
+```
+
+`Out`: 2021-08-04 04:50:41.078634
+
+
+
+*** 달력 생성 및 처리 모듈**
+
+파이썬 내장 모듈인 calendar 모듈을 이용해 다양한 형태로 달력을 생 성해 출력하고 날짜와 관련된 정보(연도, 월, 주)를 구하는 방법. calendar 모듈은 달력과 관련된 클래스와 함수를 제공.
+
+● calendar 모듈의 주요 함수 및 사용 예
+
+| calendar 모듈의 함수      | 설명                                                         | 사용 예                            |
+| ------------------------- | ------------------------------------------------------------ | ---------------------------------- |
+| calendar(year)            | 지정된 연도(year)의 전체 달력을 문자열로 반환(기본 형식은 3개의 열) | calendar.calendar(2017)            |
+| month(year, month)        | 지정된 연도(year)와 월(month)의 달력을 문자열로 변환         | calendar.month(2019, 1)            |
+| monthrange(year, month)   | 지정된 연도(year)와 월(month)의 시작 요일과 일수 반환. 요일의 경우 0(월요일) ~ 6(일요일) 사이의 숫자로 반환 | calendar.monthrange(2020, 1)       |
+| firstweekday()            | 달력에 표시되는 주의 첫 번째 요일값을 반환. 기본값으로는 월요일(0)으로 지정 | calendar.firstweekday()            |
+| setfirstweekday(weekday)  | 달력에 표시되는 주의 첫번째 요일을 지정                      | calendar.setfirstweekday(6)        |
+| weekday(year, month, day) | 지정된 날짜[연도(year), 월(month), 일(day)]의 요일을 반환    | calendar.weekday(year, month, day) |
+| isleap(year)              | 지정된 연도(year)가 윤년인지를 판단하 윤년이면 True, 아니면 False를 반환 | calendar.isleap(2020)              |
+
+● calendar 모듈에서 요일 지정 상수
+
+| 요일 | 요일 지정 상수     | 숫자로 표시 |
+| ---- | ------------------ | ----------- |
+| 월   | calendar.MONDAY    | 0           |
+| 화   | calendar.TUESDAY   | 1           |
+| 수   | calendar.WEDNESDAY | 2           |
+| 목   | calendar.THURSDAY  | 3           |
+| 금   | calendar.FRIDAY    | 4           |
+| 토   | calendar.SATURDAY  | 5           |
+| 일   | calendar.SUNDAY    | 6           |
+
+ calendar 모듈을 이용하려면 먼저 `import calendar`로 모듈을 불러 와야 함.
+
+calendar() 함수를 이용해 지정한 연도의 전체 달력을 출력하는 방법.
+
+```python
+import calendar
+
+print(calendar.calendar(2018))
+```
+
+`Out`: ![달력 출력 내용 캡쳐]()
+
+
+
+calendar() 함수의 기본적인 달력 출력 양식은 달을 3열로 출력.
+
+
+
+
+
+```
+print(calendar.calendar(2019, m=4))
+```
+
+`Out`: <img src="c:\myPyCode\Png file\10-04-01.png" alt="달력 출력 내용 캡쳐" style="zoom:33%;" />
+
+```python
+print(calendar.month(2020, 9))
+```
+
+`Out`: <img src="C:\myPyCode\Png file\10-04-02.png" style="zoom:33%;" />  
+
+연도와 월을 지정해 그달 1일이 시작하는 요일과 그달의 날짜 수를 알 고 싶다면 monthrange()함수를 이용
+
+```python
+print(calendar.monthrange(2020, 2))
+```
+
+`Out`: (5, 29)
+
+결과로 두 개의 숫자가 반환. 첫 번째 숫자는 해당 월의 1일의 요일에 해당하는 숫자{월요일 ~ 일요 일을 의미하는 0〜 6 중 하나가 반환됨). 두 번째 숫자는 해당 월의 날짜 수. 출력된 달력을 보면 일주일의 시작 요일이 월요일인 것을 알 수 있음.
+
+달력에서 일주일의 시작 요일을 구하려면 firstweekday() 함수를 실행.
+
+```python
+calendar.firstweekday()
+```
+
+`Out`: 0
+
+결과로 0이 출력돼 달력에서 일주일의 시작 요일이 월요일로 지정됨.
+
+시작 요일을 지정하려면 setfirstweekday(weekday) 함수를 이용. 시작 요일을 일요일로 지정하려면 weekday 에는 6(혹은 calendar.SUNDAY)을 입력. 
+
+setfirstweekday (calendar.SUNDAY) 로 달력에서 일주일의 시작 요 일을 일요일로 바꾸고 달력을 출력.
+
+```python
+calendar.setfirstweekday(calendar.SUNDAY)
+print(calendar.month(2020, 9))
+```
+
+`Out`: <img src="C:\myPyCode\Png file\10-04-03.png" style="zoom: 33%;" />
+
+```python
+print(calendar.weekday(2018, 10, 14))
+```
+
+`Out`: 6
+
+```python
+print(calendar.isleap(2018))
+print(calendar.isleap(2020))
+```
+
+`Out`: False
+
+​		  True
+
+
+
+#### 05 패키지
+
+> 파이썬에서 모듈은 코드가 저장된 파일. 어떤 기능을 구현할 때 하나의 모듈로 구성하 기보다는 여러 개의 모듈 로 구현하는 경우가 많음. **여러 모듈을 체계적으로 모아서 꾸러미로 관리하면 편리. 파이썬에서는 이런 꾸러미를 패키지(Package)라고 함.** 파이썬 패키지는 여러 모듈을 폴더로 묶어서 계충적으로 관리. 복잡하고 규모가 큰 프로그램을 작성할 때는 각 모듈을 묶어서 패키지 로 만들면 좀 더 효율적으로 코드를 관리할 수 있음.
+
+*** 패키지의 구조**
+
+파이썬 패키지는 폴더 구조로 돼 있으며 각 폴더에는 `__init__.py`라는 특별한 파일이 있음. `__init__.py` 파일은 해당 폴더가 패키지의 일부인 것을 알려주는 역할을 함. `__init__.py` 파일은 패키지를 초기화하는 코드를 넣을 수도 있고 아무 코드도 없는 빈 파일일 수도 있음. 패키지를 만들 때 `__init__.py` 파일이 없어도 되지만 하위 호환성을 고 려하면 `__init__.py`파일을 포함하는 것이 좋음.
+
+● image 패키지의 폴더 구조 예시
+
+```
+\---image
+	|	__init__.py
+	|
+	+---efect
+	|	  rotate.py
+	|	  zoomInOut.py
+	|	  __init__.py
+	|
+	+---filter
+	|	  blur.py
+	|	  sharpen.py
+	|	  __init__.py
+	|
+	\---io_file
+			imgread.py
+			imgwrite.py
+			__init__.py
+```
+
+
+
+*** 패키지 만들기**
+
+imgread 모듈에는 pngread() 함수와 jpgread() 함수를 만듬.
+
+```python
+%%writefile c:\myPyCode\packages\image\io_file\amgread.py
+# File name: imgread.py
+
+def pngread():
+    print('pngread in imgread module')
+    
+def jpgread():
+    print('jpgread in imgread module')
+```
+
+
+
+
+
+*** 패키지 사용하기**
+
+패키지 모듈을 이용하려면 `import 패키지 내 모듈명`으로 선언. 패키지명에서 시작해 모듈명까지 구분하기 위해 패키지명, 폴더명, 모 듈명 사이에 온점(.)을 입력. 패키지 폴더 안에 바로 모듈이 있다면 `import 패키지명.모들명`으로 모듈을 호출. 패키지와 모듈 사이에 폴더가 있다면 `import 패키지명.폴더명.모둘명` 으로 모듈을 호출.
+
+패키지에서 모듈 내의 함수를 호출하는 방법.
+
+```python
+import image.io_file.imgread  # image 패키지 io_file 폴더의 imgread 모듈 임포트
+
+import image.io_file.pngread  # imgread 모듈 내의 pngread() 함수 호출
+import image.io_file.jpgread  # imgread 모듈 내의 jpgread() 함수 호출
+```
+
+`Out`
+
+
+
+`from A import B` 형식을 이용하면 패키지 안에 있는 모듈 내 함수를 더 간단하게 호출. 첫 번째 방법은 `from A import B`에서 A에는 `패키지명[.폴더명]`을 입력하고 B에는 사용할 모듈명을 입력.
+
+```python
+from image.io_file import imgread  
+
+imageread.pngread()
+imageread.jpgread()
+```
+
+`Out`
+
+
+
+
+
+```
+```
 
