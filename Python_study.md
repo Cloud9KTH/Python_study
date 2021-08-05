@@ -173,11 +173,152 @@ String Test 2
 
 
 
+```python
+type(string1)
+```
 
+```
+Out:
+str
+```
+
+
+
+```python
+type(string2)
+```
+
+```
+Out:
+str
+```
+
+출력 결과는 str. 변수 string과 string2에 할당한 데이터의 타입이 문자열(string)인 것을 의미.
+
+
+
+ 문자열 안에 큰따옴표나 작은따옴표도 포함하려면 어떻게 해야 할까요?
+
+```python
+string3 = 'This is a "double" quotation test'
+string4 = "This is a 'single' quotation test"
+print(string3)
+print(string4)
+```
+
+```
+Out:
+This is a "double" quotation test
+This is a 'single' quotation test
+```
+
+문자열에 큰따옴표를 포함하려면 문자열을 작은따옴표로 감싸고 작은 따옴표를 포함하려면 큰따옴표로 감싸면 됨.
+
+ 문자열에 큰따옴표와 작은따음표를 모두 포함하고 싶거나 문장을 여러 행 넣고 싶거나 입력한 그 대로 출력하고 싶을 때는?
+
+```python
+long_string1 = '''[삼중 작은 따옴표를 사용한 예]
+파이썬에는 삼중 따옴표로 여러 행의 문자열을 입력할 수 있습니다.
+큰따옴표(")와 작은따옴표(')도 입력할 수 있습니다.'''
+
+long_string2 = """[삼중 큰따옴표를 사용한 예]
+파이썬에는 삼중 따옴표로 여러 행의 문자열을 입력할 수 있습니다.
+큰따옴표(")와 작은따옴표(')도 입력할 수 있습니다."""
+
+print(long_string1)
+print(long_string2)
+```
+
+```
+Out:
+[삼중 작은 따옴표를 사용한 예]
+파이썬에는 삼중 따옴표로 여러 행의 문자열을 입력할 수 있습니다.
+큰따옴표(")와 작은따옴표(')도 입력할 수 있습니다.
+[삼중 큰따옴표를 사용한 예]
+파이썬에는 삼중 따옴표로 여러 행의 문자열을 입력할 수 있습니다.
+큰따옴표(")와 작은따옴표(')도 입력할 수 있습니다.
+```
+
+문자열 전체를 삼중 큰따옴표 (""") 나 삼중 작은따옴표 (""")로 감쌈.
+
+
+
+*** 문자열 다루기**
+
+문자열에는 더하기 연산자(+)와 곱하기 연산자(*)를 이용할 수 있음. 더하기 연산자(+)는 문자열 끼리 연결(concatenation)해 문자열을 하나로 만듦.
+
+```python
+a = 'Enjoy '
+b = 'python!!'
+c = a + b
+print(c)
+```
+
+```
+Out: 
+Enjoy python!!
+```
+
+```python
+print(a * 3)
+```
+
+```
+Out:
+Enjoy Enjoy Enjoy 
+```
 
 
 
 #### 03 리스트
+
+> 숫자, 문자열, 불 데이터 타입 (이런 데이터 타입은 데이터를 하나씩만 처리할 수 있음). 데이터를 묶어 놓으면 처리하기가 편할 때가 있음. 예를 들면, 학교에서 학생의 과목별(국어，영어, 수학, 과학 등) 시험 점 수를 처리한다거나 학급별로 학생의 이름을 지정할 때 데이터를 묶어 서 관리하면 편리함. 이렇게 할 수 있는 것이 바로 리스트(List).
+
+*** 리스트 만들기**
+
+리스트는 대괄호([ ])를 이용해 만듦. 대괄호 안에 올 수 있는 항목{혹은 요소)의 데이터 타입은 다양함. 숫자, 문자열, 불, 리스트 등을 넣을 수 있음. 튜플, 세트, 딕셔너리도 넣을 수 있음.
+
+리스트를 만들 때 각 항목의 데이터 타입은 같지 않아도 됨. 데이터는 입력한 순서대로 지정되며 항목은 콤마(,)로 구분. 대괄호 안에 아무것도 쓰지 않으면 빈 리스트가 만들어짐. 빈 리스트에는 데이터는 없지만 데이터 형태는 리스트임.
+
+학생의 국어, 영어, 수학, 과학 점수가 각각 90, 95, 85, 80인 리스트.
+
+```python
+# 1번 학생의 국어, 영어, 수학, 과학 점수가 각각 90, 95, 85, 80
+student1 = [90, 95, 85, 80]
+student1
+```
+
+```
+Out:
+[90, 95, 85, 80]
+```
+
+
+
+```python
+type(student1)
+```
+
+```
+Out:
+list
+```
+
+리스트 타입의 데이터가 할당된 변수(리스트 변수)의 구조.
+
+• 리스트에서 각 항목은, 변수명[i]로 지정 할 수 있음 
+
+• 여기서 i를 리스트 변수의 인덱스(index)라고 함 
+
+• 만약 N개의 항목이 있는 리스트 타입의 데이터가 있다면 인덱스 i의 범위는 0부터 ‘N-1'까지 임 
+
+• 첫 번째 요소는 '변수명[0]’, 두 번째 요소는 '변수명[1], 세 번째 요소는 변수명[2], 인덱스의 숫자가 증가하다가 마지막 요소는 '변수명[N-1]'이 됨 
+
+• 마지막 항목은 '변수명 [-1]'로도 지정할 수도 있음
+
+
+
+
 
 (1, 2, 3, 'apple', 'fox')
 
@@ -2291,6 +2432,612 @@ Out:
 색상: black
 ```
 
+ 선언한 Bicycle 클래스에 함수를 추가.
+
+```python
+class Bicycle():
+    
+    def move(self, speed):
+        print('자전거: 시속 {0} 킬로미터로 전진'.format(speed))
+        
+    def turn(self, direction):
+        print('자전거: {0} 회전'.format(direction))
+        
+    def stop(self):
+        print('자전거({0}, {1}): 정지'.format(self.wheel_size, self.color))
+```
+
+Bicycle 클래스에 ‘지정된 속도로 이동’，‘좌/우회전’，‘정지’ 동작을 나 타내는 move(), turn(), stop() 함 수를 각각 추가. 객체를 생성한 후에는 `객체명.변수명 = 속성값`으로 속성값을 설정하고 `객체명.변수명`으로 속성값을 가져왔지만, 클래스의 함수 안에서는 `self. 변수명 = 속성값`으로 속성값을 설정하고, `self. 변수명`으로 속성값을 가져옮. stop()함수에서는 self .wheel_size 와 self .color 로 객체의 속성값을 가져와서 출력.
+
+객체의 메서드를 호출 할 때.
+
+```
+객체명.메서드명([인자1, 인자2, • • • , 인자n])
+```
+
+
+
+메서드명은 클래스에서 정의한 함수명. 객체에서 메서드를 호출할 때 인자는 클래스에서 정의한 함수의 인자만 큼 필요. 클래스를 선언할 때 추가했던 함수의 인자 self는 필요하지 않음. 클래스에서 self만 인자로 갖는 함수를 객체에서 이용할 때는 소괄호 안 에 인자를 지정하지 않음.
+
+```python
+my_bicycle = Bicycle()     # Bicycle 클래스의 인스턴스인 my_bicycle 객체 생성
+
+my_bicycle.wheel_size = 26 # 객체의 속성 설정
+my_bicycle.color = 'black'
+
+my_bicycle.move(30)        # 객체의 메서드 호출
+my_bicycle.turn('좌')
+my_bicycle.stop()
+```
+
+```
+Out:
+자전거: 시속 30 킬로미터로 전진
+자전거: 좌 회전
+자전거(26, black): 정지
+```
+
+Bicycle 클래스에서 my_bicycle 객체를 생성한 후 속성을 설정하고 메서드를 호출. Bicycle 클래스에서 함수를 정의할 때 self 외의 인자가 있는 move(), turn() 함수의 경우에는 객체의 메서드를 호출할 때 인자를 입력했고 self 인자만 있는 stop() 함수의 경우에는 인자 없이 객체의 메서드를 호출.
+
+
+
+클래스의 선언, 객체의 생성 및 활용 방법. 자전거 (Bicycle) 클래스를 선언한 후 두 개의 객체(bicycle1, bicycle2)를 생성하고 활용.
+
+```python
+bicycle1 = Bicycle()      # Bicycle 클래스의 인스턴스인 bicycle1 객체 생성
+
+bicycle1.wheel_size = 27  # 객체의 속성 설정
+bicycle1.color = 'red'
+
+bicycle1.move(20)         # 객체의 메서드 호출
+bicycle1.turn('좌')
+bicycle1.stop()
+```
+
+```
+Out:
+자전거: 시속 20 킬로미터로 전진
+자전거: 좌 회전
+자전거(27, red): 정지
+```
+
+
+
+```python
+bicycle2 = Bicycle()      # Bicycle 클래스의 인스턴스인 bicycle2 객체 생성
+
+bicycle2.wheel_size = 24  # 객체의 속성 설정
+bicycle2.color = 'blue'
+
+bicycle2.move(15)         # 객체의 메서드 호출
+bicycle2.turn('우')
+bicycle2.stop()
+```
+
+```
+Out:
+자전거: 시속 15 킬로미터로 전진
+자전거: 우 회전
+자전거(24, blue): 정지
+```
+
+
+
+*** 객체 초기화**
+
+Bicycle 클래스를 선언하고 객체를 생성한 후에 객체의 속성을 설정. 클래스를 선언할 때 초기화 함수 `__init__()`를 구현하면 객체를 생성하는 것과 동시에 속성값을 지정할 수 있음. `__init__()` 함수는 클래스의 인스턴스가 생성될 때(즉, 객체가 생성될 때)  자동으로 실행.  `__init__()` 함수에 초기화하려는 인자를 정의하면 객체를 생성할 때 속성 을 초기화 할 수 있음.
+
+ Bicycle 클래스에 `__init__()` 함수를 추가한 코드.
+
+```python
+class Bicycle():
+    
+    def __init__(self, wheel_size, color):
+        self.wheel_size = wheel_size
+        self.color = color
+        
+    def move(self, speed):
+        print("자전거: 시속 {0}킬로미터로 전진".format(speed))
+        
+    def turn(self, direction):
+        print("자전거: {0}회전".format(direction))
+        
+    def stop(self):
+        print("자전거({0}, {1}): 정지".format(self.wheel_size, self.color))
+```
+
+ `__init__(self, wheel_size, color)` 함수는 wheel_size와 color를 인자로 입력받아 함수 내에서 `self.변수명 = 인자`로 객체의 속성을 초기화. 클래스에 `__init__()`함수가 정의돼 있으면 객체를 생성할 때 `__init__()` 함 수의 인자를 입력(self는 제외)함. 
+
+```python
+객체명 = 클래스명(인자1, 인자2, 인자3, • • • , 인자n)
+```
+
+ Bicycle 클래스에서 객체를 생성할 때 속성값을 지정해서 초기화하는 방법
+
+```python
+my_bicycle = Bicycle(26, 'black')   # 객체 생성과 동시에 속성값을 지정
+
+my_bicycle.move(30)                 # 객체의 메서드 호출
+my_bicycle.turn('좌')
+my_bicycle.stop()
+```
+
+```
+Out:
+자전거: 시속 30킬로미터로 전진
+자전거: 좌회전
+자전거(26, black): 정지
+```
+
+클래스에서 초기화 함수 `__init__(self, wheel_size, color)`를 구현하지 않았을 때는 객 체를 생성한 후에 속성을 지정. 초기화 함수를 정의한 후로는 객체를 생성하면서 객체의 속성을 지정할 수 있음.
+
+
+
+#### 02 클래스를 구성하는 변수와 함수
+
+*** 클래스에서 사용하는 변수**
+
+클래스에서 사용하는 변수는 위치에 따라 클래스 변수(class variable) 와 인스턴스 변수(instance variable)로 구분. 클래스 변수는 클래스 내에 있지만 함수 밖에서 `변수명 = 데이터`형식 으로 정의한 변수로서 클래스에서 생성한 모든 객체가 공통으로 사용. 클래스 변수는 `클래스명.변수` 형식으로 접근할 수 있음.
+
+```python
+class Car():
+    instance_count = 0        # 클래스 변수 생성 및 초기화
+    
+    def __init__(self, size, color):
+        self.size = size      # 인스턴스 변수 생성 및 초기화
+        self.color = color    # 인스턴스 변수 생성 및 초기화
+        Car.instance_count = Car.instance_count + 1  # 클래스 변수 이용
+        print("자동차 객체의 수: {0}".format(Car.instance_count))
+        
+    def move(self):
+        print("자동차({0}, {1})가 움직입니다.".format(self.size, self.color))
+```
+
+클래스 변수인 instance_count를 초기화 함수 `__init__()`에서 Car.instance_count의 형식으로 이용.
+
+선언한 클래스를 이용해 클래스 변수와 인스턴스 변수를 각각 어떻게 사용하는 두개의 객체(carl과 car2)를 생성.
+
+```python
+car1 = Car('small', 'white')
+car2 = Car('big', 'black')
+```
+
+```
+Out:
+자동차 객체의 수: 1
+자동차 객체의 수: 2
+```
+
+클래스 Car를 이용해 객체 carl과 car2를 생성. 출력된 결과를 보면 객체를 생성할 때마다 클래스 변수 instance_count가 1씩 증가 해서 Car 클래스의 객체가 몇 개 생성됐는지 알 수 있음.
+
+클래스 변수는 `클래스명.변수명` 형식으로 언제든지 호출.
+
+```python
+print("Car 클래스의 총 인스턴스 개수:{}".format(Car.instance_count))
+```
+
+```
+Out:
+Car 클래스의 총 인스턴스 개수:2
+```
+
+
+
+클래스 변수도 객체를 생성한 후 `객체명.변수명`형식으로 접근.
+
+```python
+print("Car 클래스의 총 인스턴스 개수:{}".format(car1.instance_count))
+print("Car 클래스의 총 인스턴스 개수:{}".format(car2.instance_count))
+```
+
+```
+Car 클래스의 총 인스턴스 개수:2
+Car 클래스의 총 인스턴스 개수:2
+```
+
+출력 결과를 보면 carl과 car2 객체에서 사용한 클래스 변수 instance_count는 값이 같은 것을 볼 수 있음. 모든 객체에서 클래스 변수가 공통으로 사용되기 때문.
+
+
+
+ 클래스 변수는 `클래스명.변수명` 형식으로 언제든지 호출.
+
+```python
+car1.move()
+car2.move()
+```
+
+```
+Out:
+자동차(small, white)가 움직입니다.
+자동차(big, black)가 움직입니다.
+```
+
+출력 결과에서 볼 수 있듯이 인스턴스 변수(여기서는 self .size와 self .color)는 각 객체에서 별도로 관리됨.
+
+이름이 같은 클래스 변수와 인스턴스 변수가 있는 클래스를 정의해서 객체에서 각 변수가 동작.
+
+```python
+class Car2():
+    count = 0  # 클래스 변수 생성 및 초기화
+    
+    def __init__(self, size, num):
+        self.size = size
+        self.num = num
+        Car2.count = Car2.count + 1
+        print('자동차 객체의 수: Car2.count = {0}'.format(Car2.count))
+        print('인스턴스 변수 초기화: self.count = {0}'.format(self.count))
+
+    def move(self):
+        print('자동차{0} & {1}가 움직입니다.'.format(self.size, self.count))
+```
+
+클래스의 초기화 함수 `__init__()`에서 클래스 변수 count(함수 내에서 Car2.count로 이용)와 인스턴스 변수 count(함수 내에서 self.count로 이용)를 이용. 변수 이름은 같지만 이 둘은 별개로 동작.
+
+객체를 생성해서 각 객체에서 두 변수가 어떻게 동작하는지 확인.
+
+```
+car1 = Car2('big', 20)
+car2 = Car2('small', 30)
+```
+
+```
+Out:
+자동차 객체의 수: Car2.count = 1
+인스턴스 변수 초기화: self.count = 1
+자동차 객체의 수: Car2.count = 2
+인스턴스 변수 초기화: self.count = 2
+```
+
+
+
+*** 클래스에서 사용하는 함수**
+
+클래스에서 정의할 수 있는 함수(메서드)에는 그 기능과 사용법에 따라 인스턴스 메서드(instance method), 정적 메서드(static method), 클래스 메서드(class method)가 있음.
+
+**인스턴스 메서드**
+
+인스턴스 메서드는 각 객체에서 개별적으로 동작하는 함수를 만들고자 할 때 사용하는 함수. 인스턴스 메서드는 함수를 정의할 때 첫 인자로 self가 필요. self는 클래스의 인스턴스(객체) 자신을 가리킴. 인스턴스 메서드에서는 self를 이용해 인스턴스 변수를 만들고 사용. 인스턴스 메서드 안에서는 `self.함수명()`형식으로 클래스 내의 다른 함수를 호출할 수 있음.
+
+인스턴스 메서드의 구조.
+
+```python
+class 클래스명():  
+    def 함수명(self[, 인자1, 인자2, • • , 인자n]):
+        self. 변수명1 = 인자1  
+        self. 변수명2 = 인자2  
+        self. 변수명3 = 데이터 
+        〈코드 블록〉
+```
+
+인스턴스 메서드는 객체를 생성한 후에 호출.
+
+```
+객체명 = 클래스명()  
+객체명.메서드명([인자1, 인자2, • • , 인자n])
+```
+
+인스턴스 메서드 예시
+
+```python
+class Car():                  # Car 클래스 선언
+    instance_count = 0     # 클래스 변수 생성 및 초기화
+        
+    def __init__(self, size, color):   # 초기화 함수(인스턴스 메서드)
+        self.size = size      # 인스턴스 변수 생성 및 초기화
+        self.color = color    # 인스턴스 변수 생성 및 초기화
+        Car.instance_count = Car.instance_count + 1  # 클래스 변수 이용
+        print("자동차 객체의 수: {0}".format(Car.instance_count))
+        
+    def move(self, speed):     # 인스턴스 메서드
+        self.speed = speed     # 인스턴스 변수 생성
+        print("자동차({0}, {1})가 ".format(self.size, self.color), end='')
+        print('시속 {0}킬로미터로 전진'.format(self.speed))
+        
+    def auto_cruise(self):     # 인스턴스 메서드
+        print("자율 주행 모드")
+        self.move(self.speed)  # move() 함수의 인자로 인스턴스 변수를 입력
+```
+
+함수 auto_cruise()는 `self.함수명()`을 이용해 인스턴스 메서드(move()) 를 호출. 클래스 내의 함수에서 인스턴스 메서드를 호출할 때는 인자에 self는 전달하지 않음.
+
+인스턴스 메서드를 실행하기 위해 객체를 생성하고 move()와 auto_cruise() 메서드를 호출.
+
+```python
+car1 = Car('small', 'red')    # 객체 생성 (car1)
+car2 = Car('big', 'green')    # 객체 생성 (car1)
+
+car1.move(80)                # 객체(car1)의 move() 메서드 호출
+car2.move(100)               # 객체(car2)의 move() 메서드 호출
+
+car1.auto_cruise()            # 객체(car1)의 auto_cruise() 메서드 호출
+car2.auto_cruise()            # 객체(car2)의 auto_cruise() 메서드 호출
+```
+
+```
+Out:
+자동차 객체의 수: 1
+자동차 객체의 수: 2
+자동차(small, red)가 시속 80킬로미터로 전진
+자동차(big, green)가 시속 100킬로미터로 전진
+자율 주행 모드
+자동차(small, red)가 시속 80킬로미터로 전진
+자율 주행 모드
+자동차(big, green)가 시속 100킬로미터로 전진
+```
+
+인스턴스 메서드인 move()와 auto_cruise()는 두 개의 객체(car1, car2) 에서 개별적으로 동작.
+
+
+
+*** 정적 메서드**
+
+정적 메서드는 클래스와 관련이 있어서 클래스 안에 두기는 하지만 클래스나 클래스의 인스턴스(객체) 와는 무관하게 독립적으로 동작하 는 함수를 만들고 싶을 때 이용하는 함수. 함수를 정의할 때 인자로 self를 사용하지 않으며 정적 메서드 안에서는 인스턴스 메서드나 인스턴스 변수에 접근할 수 없음.  함수 앞에 데코레이터 (Decorator) 인 `@staticmethod`를 선언해 정적 메서드임을 표시.
+
+정적 매서드의 구조.
+
+```python
+class 클래스명():
+    @staticmethod
+    def 함수명([인자1, 인자2, • • , 인자n]):
+        <코드 블록>
+```
+
+객체를 생성한 후에 정적 메서드를 호출할 수도 있지만 정적 메서드는 보통 객체를 생성하지 않고 클래스명을 이용해 바로 메서드를 호출.
+
+```python
+클래스명.메서드명([인자1, 인자2, • • • , 인자n]):
+```
+
+정적 메서드는 날짜 및 시간 정보 제공, 환율 정보 제공, 단위 변환과 같 이 객체와 관계없이 독립적으로 동작하는 함수를 만들 때 주로 이용.
+
+ 정적 메서드를 사용한 예로, 앞에서 만든 Car() 클래스에 정적 메서드인 check_type()을 추가.
+
+```python
+class Car():               # Car 클래스 선언
+        
+    # def __init__(self, size, color): => 앞의 코드 활용
+    # def move(self, speed): => 앞의 코드 활용
+    # def auto_cruise(self): => 앞의 코드 활용
+    
+    # 정적 메서드
+    @staticmethod
+    def check_type(model_code):
+        if(model_code >= 20):
+            print('이 자동차는 전기차 입니다.')
+        elif(10 <= model_code < 20):
+            print('이 자동차는 가솔린 차 입니다.')
+        else:
+            print('이 자동차는 디젤차 입니다.') 
+```
+
+정적 메서드 check_type()을 살펴보면 self 인자 없이 일반 함수처럼 필 요한 인자만 사용.
+
+`클래스명.정적메서드명()`형식으로 정적 메서드를 호출.
+
+```
+Car.check_type(25)
+Car.check_type(2)
+```
+
+```
+Out:
+이 자동차는 전기차 입니다.
+이 자동차는 디젤차 입니다.
+```
+
+
+
+*** 클래스 메서드**
+
+클래스 메서드는 클래스 변수를 사용하기 위한 함수. 클래스 메서드는 함수를 정의할 때 첫 번째 인자로 클래스를 넘겨받는 cls가 필요하며 이를 이용해 클래스 변수에 접근. 클래스 메서드를 사용하기 위해서는 함수 앞에 데코레이터인 @classmethod를 지정.
+
+ 클래스 메서드의 구조.
+
+```python
+class 클래스명(): 
+    @classmethod 
+    def 함수명(cls[, 인자1, 인자2, • • • , 인자n]): 
+        〈코드 블록〉
+```
+
+클래스 메서드도 객체를 생성하지 않고 클래스명을 이용해 바로 호출. 
+
+```
+클래스명.메서드명([인자1, 인자2, • • • , 인자n]):
+```
+
+클래스 메서드는 생성된 객체의 개수를 반환하는 등 클래스 전체에서 관리해야 할 기능이 있을 때 주로 이용.
+
+클래스 메서드를 사용한 Car() 클래스에 클래스 메서드인 count_instance()를 추가.
+
+```python
+class Car():               # Car 클래스 선언
+    instance_count = 0     # 클래스 변수 생성 및 초기화
+    
+    # 초기화 함수(인스턴스 메서드)
+    def __init__(self, size, color):
+        self.size = size
+        self.color = color
+        Car.instance_count = Car.instance_count + 1
+        
+    # def move(self, speed): => 앞의 코드 활용
+    # def auto_cruise(self): => 앞의 코드 활용
+    # @staticmethod
+    # def check_type(model_code): => 앞의 코드 활용
+
+    # 클래스 메서드
+    @classmethod
+    def count_instance(cls):
+        print('자동차 객체의 개수: {0}'.format(cls.instance_count))
+```
+
+클래스 변수 instance_count는 초기화 함수 `__init()__`에서 1씩 증가하 므로 객체가 생성될 때마다 값이 1씩 증가. 클래스 변수 instance_count를 출력하는 클래스 메서드 count_instance()를 호출하면 현재까지 생성된 객체의 개수를 알 수 있음.
+
+`클래스명.클래스메서드명()`형식으로 클래스 메서드를 호출.
+
+```python
+Car.count_instance()          # 객체 새엉 전에 클래스 메서드 호출
+
+car1 = Car('small', 'red')    # 첫번째 객체 생성
+Car.count_instance()          # 클래스 메서드 호출
+
+
+car2 = Car('big', 'green')    #  두번째 객체 생성
+Car.count_instance()          # 클래스 메서드 호출
+```
+
+```
+Out:
+자동차 객체의 개수: 0
+자동차 객체의 개수: 1
+자동차 객체의 개수: 2
+```
+
+ 객체를 생성할 때마다 클래스 변수 instance_count의 값이 1씩 증가하 는 것을 확인 할수 있음.
+
+
+
+#### 03 객체와 클래스를 사용하는 이유
+
+작은 규모의 프로그램을 만들 때는 클래스와 객체를 사용하지 않고 코드를 작성하기도 하지만 규모가 큰 프로그램을 만들 때는 클래스와 객체를 많이 이용. 게임의 캐릭터와 같이 유사한 객체가 많은 프로그램을 만들 때도 주 로 클래스와 객체를 이용해 코드를 작성.
+
+컴퓨터 게임의 로봇은 위로만 이동할 수 있다고 가정하고 로봇의 속성과 동작을 정의 .
+
+로봇의 속성: 이름, 위치
+
+로봇의 동작:한 칸 이동
+
+```python
+robot_name = 'R1'          # 로봇 이름
+robot_pos = 0              # 로봇의 초기 위치
+
+def robot_move():
+    global robot_pos
+    robot_pos = robot_pos + 1
+    print('{0} position: {1}'.format(robot_name, robot_pos))
+```
+
+robot_name과 robot_pos 변수에 각각 로봇의 속성을 지정했고 함수 robot_move()는 로봇을 한 칸 이동한 후에 로봇의 이름과 위치를 출력.
+
+함수 robot_move()를 호출.
+
+```python
+robot_move()
+```
+
+```
+Out:
+R1 position: 1
+```
+
+한 대의 로봇을 구현하기 위해 두 개의 변수(robot_name과 robot_pos) 와 하나의 함수(robot_move()) 를 만들었음.
+
+로봇을 하나 더 추가해 두 대의 로봇을 구현한 코드.
+
+```python
+robot1_name = 'R1'          # 로봇 이름
+robot1_pos = 0              # 로봇의 초기 위치
+
+def robot1_move():
+    global robot1_pos
+    robot1_pos = robot1_pos + 1
+    print('{0} position: {1}'.format(robot1_name, robot1_pos))
+    
+robot2_name = 'R2'          # 로봇 이름
+robot2_pos = 10             # 로봇의 초기 위치
+
+def robot2_move():
+    global robot2_pos
+    robot2_pos = robot2_pos + 1
+    print('{0} position: {1}'.format(robot2_name, robot2_pos))
+```
+
+로봇용으로 정의한 함수를 호출
+
+```python
+robot1_move()
+robot2_move()
+```
+
+```
+Out:
+R1 position: 1
+R2 position: 11
+```
+
+만약 더 많은 로봇을 구현해야 한다면 그만큼 변수와 함수도 더 늘어날 것. 로봇이 늘어남에 따라 같은 비율로 변수와 함수가 증가하고 코드 작성과 관리는 상당히 힘들어질 것. 로봇별로 변수와 함수의 역할은 같다는 사실을 알 수 있음. 클래스와 객체를 이용하면 편리하게 코드를 작성.
+
+변수와 함수로만 구현한 로봇 코드를 클래스와 객체를 이용해 구현.
+
+로봇 클래스를 선언.
+
+```python
+class Robot():
+    def __init__(self, name, pos):
+        self.name = name
+        self.pos = pos
+        
+    def move(self):
+        self.pos = self.pos + 1
+        print('{0} position: {1}'.format(self.name, self.pos))
+```
+
+Robot 클래스에서 속성값(self .name와 self .pos)은 `__init__()` 함수에서 초기화하고 move()함수에 한 칸 이동하는 기능을 구현.
+
+객체를 생성.
+
+```python
+robot1 = Robot('R1', 0)
+robot2 = Robot('R2', 10)
+```
+
+Robot 클래스의 인스턴스 robot1과 robot2 객체를 생성. 클래스와 객체를 이용하지 않은 코드 에서 로봇의 개수에 비례해 변수와 함수가 늘어났던 것에 비교하면 코드가 간단해졌음.
+
+생성 된 각 로봇 객체의 메서드를 실행.
+
+```python
+robot1.move()
+robot2.move()
+```
+
+```
+Out:
+R1 position: 1
+R2 position: 11
+```
+
+robot1과 robot2 객체의 메서드가 잘 실행되어 각 로봇 객체를 한 칸씩 움직였음.
+
+더 많은 로 봇을 만들어야 한다면 얼마든지 로봇 객체를 손쉽게 생성하 고 움직일 수 있음.
+
+```python
+myRobot3 = Robot('R3', 30)
+myRobot4 = Robot('R4', 40)
+
+myRobot3.move()
+myRobot4.move()
+```
+
+```
+Out:
+R3 position: 31
+R4 position: 41
+```
+
+클래스를 선언한 이후에는 로봇이 필요할 때마다 로봇 객체만 생성하면 됨. 객체가 아무리 늘어나도 변수나 함수를 추가로 구현할 필요가 없음. 객체와 클래스 없이 로봇을 구현할 때보다 코드의 양도 줄고 관리도 편리해짐.
+
+
+
+
+
+#### 04 클래스 상속
+
+
+
+
+
+
+
 
 
 
@@ -3964,8 +4711,6 @@ def pngread():
 def jpgread():
     print('jpgread in imgread module')
 ```
-
-
 
 
 
